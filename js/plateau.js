@@ -29,7 +29,6 @@ var plateau = {
 
 				for (var j = 1; j <= 12; j++) {
 					$('<div/>').addClass('col-xs-1 colBoardGame').attr('id','case'+(this.nbLignes*(i-1)+j)).text(this.nbLignes*(i-1)+j).appendTo($('#row'+i));
-					console.log(12*(i-1)+j);
 				}
 		}
 	}
