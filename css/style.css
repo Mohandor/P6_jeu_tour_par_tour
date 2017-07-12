@@ -1,0 +1,8 @@
+.colBoardGame {
+	border: 1px solid black;
+	height: 60px;
+}
+
+#boardGame {
+	border-collapse: collapse;
+}
