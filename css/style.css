@@ -1,8 +1,22 @@
 .colBoardGame {
 	border: 1px solid black;
 	height: 60px;
+	width: 60px;
 }
 
+.empty {
+	background-image: url(../pictures/hw2_grass.png);
+}
+
+.blocked {
+	background-image: url(../pictures/mountains.png);
+	background-size: 100% auto;
+}
+.row {
+	display: block;
+	margin: auto;
+}
 #boardGame {
 	border-collapse: collapse;
+
 }

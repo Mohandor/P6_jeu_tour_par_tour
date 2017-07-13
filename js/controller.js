@@ -1,1 +1,2 @@
 plateau.generationPlateauVide();
+generationBlocked();
