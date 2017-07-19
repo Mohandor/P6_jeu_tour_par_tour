@@ -85,6 +85,8 @@ var plateau = {
 
 }
 
+
+// Première méthode avec des séries de if et else if en prennant en comptes les 4 coins et les 4 côtés
 if ($('#'+casePlayer1).hasClass('col1')) {
 	// while avec vérification
 } else if ($('#'+casePlayer1).hasClass('col'+this.nbColones)) {
@@ -95,7 +97,7 @@ if ($('#'+casePlayer1).hasClass('col1')) {
 
 }else if 
 
-
+// Seconde méthode avec un switch pour chaque cas mais je sais pas si du tout si ça peut marcher commme ça :s
 switch (casePlayer1) {
 	case 1:
 	//while avec vérification (premier coin)
