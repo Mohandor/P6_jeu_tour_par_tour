@@ -90,7 +90,7 @@ function generationWeapons() {
 	for (var l = 1; l < 4; l++) {
 
 		var caseWeapon = Math.floor(Math.random()*nbCases+1);
-		while ($('#'+caseWeapon).hasClass('blocked')) {
+		while (($('#'+caseWeapon).hasClass('blocked')) || ($('#'+caseWeapon).hasClass('weapon'))) {
 			var caseWeapon = Math.floor(Math.random()*nbCases+1);
 		}
 
