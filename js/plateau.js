@@ -18,9 +18,11 @@ var plateau = {
 	generationPlateauVide: function() {
 
 		for (var i = 1; i <= this.nbLignes; i++) {
-				
+			
+			// Pour chaques lignes on créait une division avec une class row et une id row+i dans notre div#boardGame
 			$('<div/>').addClass('row').attr('id', 'row'+i).appendTo($("#boardGame"));
 
+				// Dans chaques lignes pour chaques colonnes on créait une div avec les classes si dessou et une id compris entre 1 et le nbLignes*nbColonnes qu'on appendTo la division #row+i
 				for (var j = 1; j <= this.nbColones; j++) {
 					$('<div/>').addClass('col-xs-1 colBoardGame empty col'+j).attr('id', this.nbLignes*(i-1)+j).appendTo($('#row'+i));
 				}
@@ -31,24 +33,28 @@ var plateau = {
 	generationBlocked: function() {
 		for (var k = 0; k < this.nbBlocked; k++) {
 		
+		//On définit un nombre compris entre 1 et 144, si la case avec cet id a déjà la classe 'blocked' on continu
 		var caseBlocked = Math.floor(Math.random()*this.nbCases)+1;
 		while ($('#'+caseBlocked).hasClass('blocked')){
 			var caseBlocked = Math.floor(Math.random()*this.nbCases)+1;
 		}
 
+		// On enlève la classe empty et rajoute la classe blocked à cet case
 		$('#'+caseBlocked).removeClass('empty').addClass('blocked');
 		}	
 	},
 
 	// Fonction qui génère les 3 autres armes et les place aléatoirement sur des cases empty
 	generationWeapons: function() {
-		for (var l = 1; l < 4; l++) {
+		for (var l = 1; l < weapons.length; l++) {
 
+		// On définit un chiffre entre 1 et 144 et tant que la case à l'id correspondant n'est pas empty on continue
 		var caseWeapon = Math.floor(Math.random()*this.nbCases+1);
 		while ((!$('#'+caseWeapon).hasClass('empty'))) {
 			var caseWeapon = Math.floor(Math.random()*this.nbCases+1);
 		}
 
+		// On ajoute une classe weapon après avoir retirer la classe empty et on rajoute l'image de l'arme correspondante
 		$('#'+caseWeapon).removeClass('empty').addClass('weapon');
 		var weaponsl = weapons[l];
 		$('<img src ="'+weaponsl.url+'">').attr('id','weapon['+l+']').addClass('weaponPng').appendTo($('#'+caseWeapon));
@@ -68,17 +74,99 @@ var plateau = {
 		$('#'+casePlayer1).removeClass('empty').addClass('player');
 		$('<img src ="'+player1.icon+'">').attr('id','player1').addClass('playerPng').appendTo($('#'+casePlayer1));
 
-
+		// On définit une variable compris entre 1 et 144 pour placer le joueur2
 		var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-		while ((casePlayer2 === (casePlayer1+1)) || 
-			(casePlayer2 === (casePlayer1-1)) || 
-			(casePlayer2 === (casePlayer1+this.nbLignes)) || 
-			(casePlayer2 === (casePlayer1-this.nbLignes)) ||
-			(casePlayer2 === casePlayer1) ||
-			(!$('#'+casePlayer2).hasClass('empty'))) {
-				var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+
+		// Boucle de vérification de contact avec le joueur 1 et que ça soit bien une case empty
+
+		// Si c'est le coin en haut à gauche
+		if ( $('#'+casePlayer1).hasClass('col1') & $('#'+casePlayer1).is('#row1') ) {
+
+			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
+					(casePlayer2 === casePlayer1+this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+
+					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
 			}
 
+		//Si c'est le coin en haut à droite
+		} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) & $('#'+casePlayer1).is('#row1') ) {
+			
+			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
+					(casePlayer2 === casePlayer1+this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+
+					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+			}
+
+		// Si c'est le coin en bas à gauche
+		} else if ( $('#'+casePlayer1).hasClass('col1') & $('#'+casePlayer1).is('#row'+this.nbLignes) ){
+
+			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
+					(casePlayer2 === casePlayer1-this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+
+					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+			}
+
+		//Si c'est le coin en bas à droite
+		} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) & $('#'+casePlayer1).is('#row'+this.nbLignes) ) {
+
+			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
+					(casePlayer2 === casePlayer1-this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+
+					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+			}
+
+		// Si c'est sur la colonne à gauche
+		} else if ( $('#'+casePlayer1).hasClass('col1') ){
+
+			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
+					(casePlayer2 === casePlayer1-this.nbLignes) || (casePlayer2 === casePlayer1+this.nbLignes) ||
+					(!$('#'+casePlayer2).hasClass('empty')) ) {
+
+					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+			}
+
+		// Si c'est sur la colonne de droite
+		} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) ){
+
+			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
+					(casePlayer2 === casePlayer1-this.nbLignes) || (casePlayer2 === casePlayer1+this.nbLignes) ||
+					(!$('#'+casePlayer2).hasClass('empty')) ) {
+
+					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+			}
+
+		// Si c'est la première ligne
+		} else if ( $('#'+casePlayer1).is('#row1') ){
+
+			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
+					(casePlayer2 === casePlayer1+1) || (casePlayer2 === casePlayer1+this.nbLignes) ||
+					(!$('#'+casePlayer2).hasClass('empty')) ) {
+
+					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+			}
+
+		// Si c'est la dernière ligne
+		} else if ( $('#'+casePlayer1).is('#row'+this.nbLignes) ){
+
+			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
+					(casePlayer2 === casePlayer1+1) || (casePlayer2 === casePlayer1-this.nbLignes) ||
+					(!$('#'+casePlayer2).hasClass('empty')) ) {
+
+					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+			}
+
+		// Si on est à l'intérieur du cadre
+		} else {	
+
+			while ((casePlayer2 === (casePlayer1+1)) || (casePlayer2 === (casePlayer1-1)) ||
+			(casePlayer2 === (casePlayer1+this.nbLignes)) || (casePlayer2 === (casePlayer1-this.nbLignes)) ||
+			(casePlayer2 === casePlayer1) || (!$('#'+casePlayer2).hasClass('empty'))) {
+				
+					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+			}
+		}
+
+		// On ajoute l'image du joueur deux sur #casePlayer2
 		$('#'+casePlayer2).removeClass('empty').addClass('player');
 		$('<img src ="'+player2.icon+'">').attr('id','player2').addClass('playerPng').appendTo($('#'+casePlayer2));
 		}
@@ -86,18 +174,94 @@ var plateau = {
 }
 
 
-// Première méthode avec des séries de if et else if en prennant en comptes les 4 coins et les 4 côtés
-if ($('#'+casePlayer1).hasClass('col1')) {
-	// while avec vérification
-} else if ($('#'+casePlayer1).hasClass('col'+this.nbColones)) {
-	// while avec vérification
-} else if (blabla) {
 
-}else if (blabla) {
+/*var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
 
-}else if 
+// Si c'est le coin en haut à gauche
+if ( $('#'+casePlayer1).hasClass('col1') & $$('#'+casePlayer1).is('#row1') ) {
 
-// Seconde méthode avec un switch pour chaque cas mais je sais pas si du tout si ça peut marcher commme ça :s
+	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
+			(casePlayer2 === casePlayer1+this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+
+			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+	}
+
+//Si c'est le coin en haut à droite
+} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) & $('#'+casePlayer1).is('#row1') ) {
+	
+	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
+			(casePlayer2 === casePlayer1+this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+
+			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+	}
+
+// Si c'est le coin en bas à gauche
+} else if ( $('#'+casePlayer1).hasClass('col1') & $('#'+casePlayer1).is('#row'+this.nbLignes) ){
+
+	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
+			(casePlayer2 === casePlayer1-this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+
+			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+	}
+
+//Si c'est le coin en bas à droite
+} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) & $('#'+casePlayer1).is('#row'+this.nbLignes) ) {
+
+	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
+			(casePlayer2 === casePlayer1-this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+
+			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+	}
+
+// Si c'est sur la colonne à gauche
+} else if ( $('#'+casePlayer1).hasClass('col1') ){
+
+	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
+			(casePlayer2 === casePlayer1-this.nbLignes) || (casePlayer2 === casePlayer1+this.nbLignes) ||
+			(!$('#'+casePlayer2).hasClass('empty')) ) {
+
+			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+	}
+
+// Si c'est sur la colonne de droite
+} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) ){
+
+	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
+			(casePlayer2 === casePlayer1-this.nbLignes) || (casePlayer2 === casePlayer1+this.nbLignes) ||
+			(!$('#'+casePlayer2).hasClass('empty')) ) {
+
+			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+	}
+
+// Si c'est la première ligne
+} else if ( $('#'+casePlayer1).is('#row1') ){
+
+	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
+			(casePlayer2 === casePlayer1+1) || (casePlayer2 === casePlayer1+this.nbLignes) ||
+			(!$('#'+casePlayer2).hasClass('empty')) ) {
+
+			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+	}
+
+} else if ( $('#'+casePlayer1).is('#row'+this.nbLignes) ){
+
+	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
+			(casePlayer2 === casePlayer1+1) || (casePlayer2 === casePlayer1-this.nbLignes) ||
+			(!$('#'+casePlayer2).hasClass('empty')) ) {
+
+			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+	}
+
+} else {	
+	while ((casePlayer2 === (casePlayer1+1)) || (casePlayer2 === (casePlayer1-1)) ||
+	(casePlayer2 === (casePlayer1+this.nbLignes)) || (casePlayer2 === (casePlayer1-this.nbLignes)) ||
+	(casePlayer2 === casePlayer1) || (!$('#'+casePlayer2).hasClass('empty'))) {
+		
+			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
+	}
+}*/
+
+/*// Seconde méthode avec un switch pour chaque cas mais je sais pas si du tout si ça peut marcher commme ça :s
 switch (casePlayer1) {
 	case 1:
 	//while avec vérification (premier coin)
@@ -134,4 +298,4 @@ switch (casePlayer1) {
 	default:
 	//blabla
 	break;
-}
+}*/
