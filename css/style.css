@@ -8,6 +8,11 @@
 	z-index: 1;
 }
 
+.movementPossible {
+	box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 0.5) inset;
+	z-index: 150;
+}
+
 .blocked {
 	background-image: url(../pictures/mountains.png);
 	background-size: 100% auto;

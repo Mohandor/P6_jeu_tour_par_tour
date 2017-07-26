@@ -77,7 +77,7 @@ var plateau = {
 		// On définit une variable compris entre 1 et 144 pour placer le joueur2
 		var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
 
-		// Boucle de vérification de contact avec le joueur 1 et que ça soit bien une case empty
+		// Boucle de vérification de non contact avec le joueur 1 et que ça soit bien une case empty
 
 		// Si c'est le coin en haut à gauche
 		if ( $('#'+casePlayer1).hasClass('col1') & $('#'+casePlayer1).is('#row1') ) {
@@ -173,93 +173,6 @@ var plateau = {
 
 }
 
-
-
-/*var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-
-// Si c'est le coin en haut à gauche
-if ( $('#'+casePlayer1).hasClass('col1') & $$('#'+casePlayer1).is('#row1') ) {
-
-	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
-			(casePlayer2 === casePlayer1+this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
-
-			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-	}
-
-//Si c'est le coin en haut à droite
-} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) & $('#'+casePlayer1).is('#row1') ) {
-	
-	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
-			(casePlayer2 === casePlayer1+this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
-
-			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-	}
-
-// Si c'est le coin en bas à gauche
-} else if ( $('#'+casePlayer1).hasClass('col1') & $('#'+casePlayer1).is('#row'+this.nbLignes) ){
-
-	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
-			(casePlayer2 === casePlayer1-this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
-
-			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-	}
-
-//Si c'est le coin en bas à droite
-} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) & $('#'+casePlayer1).is('#row'+this.nbLignes) ) {
-
-	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
-			(casePlayer2 === casePlayer1-this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
-
-			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-	}
-
-// Si c'est sur la colonne à gauche
-} else if ( $('#'+casePlayer1).hasClass('col1') ){
-
-	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
-			(casePlayer2 === casePlayer1-this.nbLignes) || (casePlayer2 === casePlayer1+this.nbLignes) ||
-			(!$('#'+casePlayer2).hasClass('empty')) ) {
-
-			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-	}
-
-// Si c'est sur la colonne de droite
-} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) ){
-
-	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
-			(casePlayer2 === casePlayer1-this.nbLignes) || (casePlayer2 === casePlayer1+this.nbLignes) ||
-			(!$('#'+casePlayer2).hasClass('empty')) ) {
-
-			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-	}
-
-// Si c'est la première ligne
-} else if ( $('#'+casePlayer1).is('#row1') ){
-
-	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
-			(casePlayer2 === casePlayer1+1) || (casePlayer2 === casePlayer1+this.nbLignes) ||
-			(!$('#'+casePlayer2).hasClass('empty')) ) {
-
-			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-	}
-
-} else if ( $('#'+casePlayer1).is('#row'+this.nbLignes) ){
-
-	while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
-			(casePlayer2 === casePlayer1+1) || (casePlayer2 === casePlayer1-this.nbLignes) ||
-			(!$('#'+casePlayer2).hasClass('empty')) ) {
-
-			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-	}
-
-} else {	
-	while ((casePlayer2 === (casePlayer1+1)) || (casePlayer2 === (casePlayer1-1)) ||
-	(casePlayer2 === (casePlayer1+this.nbLignes)) || (casePlayer2 === (casePlayer1-this.nbLignes)) ||
-	(casePlayer2 === casePlayer1) || (!$('#'+casePlayer2).hasClass('empty'))) {
-		
-			var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
-	}
-}*/
 
 /*// Seconde méthode avec un switch pour chaque cas mais je sais pas si du tout si ça peut marcher commme ça :s
 switch (casePlayer1) {
