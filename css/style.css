@@ -46,9 +46,14 @@
 
 #infoBoard {
 	padding-top: 15px;
+	border-collapse: collapse;
 }
 
-#weaponsInfo {
+.playersInfo {
+	text-align: center;
+}
+
+#weaponsInfo, .playersInfo {
 	text-align: center;
 	border: 1px solid black;
 }

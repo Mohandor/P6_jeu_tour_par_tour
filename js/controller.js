@@ -3,13 +3,15 @@ plateau.init(12, 12);
 
 
 $('#player1').click(function(){
-	$('.movementPossible').removeClass('movementPossible');
+	removeMovementPossible();
 	var positionPlayer1 = Number($('#player1').parent('div').attr('id'));
 	verification(positionPlayer1);
+	movement(positionPlayer1);
 });
 
 $('#player2').click(function(){
-	$('.movementPossible').removeClass('movementPossible');
+	removeMovementPossible();
 	var positionPlayer2 = Number($('#player2').parent('div').attr('id'));
 	verification(positionPlayer2);
+	movement(positionPlayer2);
 });
