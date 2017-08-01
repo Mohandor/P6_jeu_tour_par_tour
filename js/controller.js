@@ -9,9 +9,6 @@ var weapon4 = new weapon('Devil tongue', 50, 'pictures/weapons/Devil_Tongue.png'
 var player1 = new player('Player1', 100, 'pictures/players/player1.png', weapon1);
 var player2 = new player('Player2', 100, 'pictures/players/player2.png', weapon1);
 
-console.log(player1.nick);
-
-
 // Génération d'un plateau de 12 lignes et 12 colonnes 
 plateau.init(12, 12);
 
@@ -29,6 +26,3 @@ $('#player2').click(function(){
 	plateau.verification(positionPlayer2);
 	movement(positionPlayer2);
 });
-
-console.log(player1);
-console.log(weapon1);

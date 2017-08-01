@@ -24,7 +24,7 @@ var plateau = {
 
 				// Dans chaques lignes pour chaques colonnes on créait une div avec les classes si dessou et une id compris entre 1 et le nbLignes*nbColonnes qu'on appendTo la division #row+i
 				for (var j = 1; j <= this.nbColones; j++) {
-					$('<div/>').addClass('col-xs-1 colBoardGame empty col'+j).attr('id', this.nbLignes*(i-1)+j).appendTo($('#row'+i));
+					$('<div/>').addClass('col-xs-1 colBoardGame empty col'+j).attr('id', this.nbColones*(i-1)+j).appendTo($('#row'+i));
 				}
 		}
 	},
@@ -83,7 +83,7 @@ var plateau = {
 		if ( $('#'+casePlayer1).hasClass('col1') & $('#'+casePlayer1).is('#row1') ) {
 
 			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
-					(casePlayer2 === casePlayer1+this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+					(casePlayer2 === casePlayer1+this.nbColones) || (!$('#'+casePlayer2).hasClass('empty')) ) {
 
 					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
 			}
@@ -92,7 +92,7 @@ var plateau = {
 		} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) & $('#'+casePlayer1).is('#row1') ) {
 			
 			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
-					(casePlayer2 === casePlayer1+this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+					(casePlayer2 === casePlayer1+this.nbColones) || (!$('#'+casePlayer2).hasClass('empty')) ) {
 
 					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
 			}
@@ -101,7 +101,7 @@ var plateau = {
 		} else if ( $('#'+casePlayer1).hasClass('col1') & $('#'+casePlayer1).is('#row'+this.nbLignes) ){
 
 			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
-					(casePlayer2 === casePlayer1-this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+					(casePlayer2 === casePlayer1-this.nbColones) || (!$('#'+casePlayer2).hasClass('empty')) ) {
 
 					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
 			}
@@ -110,7 +110,7 @@ var plateau = {
 		} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) & $('#'+casePlayer1).is('#row'+this.nbLignes) ) {
 
 			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
-					(casePlayer2 === casePlayer1-this.nbLignes) || (!$('#'+casePlayer2).hasClass('empty')) ) {
+					(casePlayer2 === casePlayer1-this.nbColones) || (!$('#'+casePlayer2).hasClass('empty')) ) {
 
 					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
 			}
@@ -119,7 +119,7 @@ var plateau = {
 		} else if ( $('#'+casePlayer1).hasClass('col1') ){
 
 			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1+1) ||
-					(casePlayer2 === casePlayer1-this.nbLignes) || (casePlayer2 === casePlayer1+this.nbLignes) ||
+					(casePlayer2 === casePlayer1-this.nbColones) || (casePlayer2 === casePlayer1+this.nbColones) ||
 					(!$('#'+casePlayer2).hasClass('empty')) ) {
 
 					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
@@ -129,8 +129,8 @@ var plateau = {
 		} else if ( $('#'+casePlayer1).hasClass('col'+this.nbColones) ){
 
 			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
-					(casePlayer2 === casePlayer1-this.nbLignes) || (casePlayer2 === casePlayer1+this.nbLignes) ||
-					(!$('#'+casePlayer2).hasClass('empty')) ) {
+					(casePlayer2 === casePlayer1-this.nbColones) || (casePlayer2 === casePlayer1+this.nbColones) ||
+					(!$('#'+casePlayer2).hasClass('empty')) ) {nbColones
 
 					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
 			}
@@ -139,7 +139,7 @@ var plateau = {
 		} else if ( $('#'+casePlayer1).is('#row1') ){
 
 			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
-					(casePlayer2 === casePlayer1+1) || (casePlayer2 === casePlayer1+this.nbLignes) ||
+					(casePlayer2 === casePlayer1+1) || (casePlayer2 === casePlayer1+this.nbColones) ||
 					(!$('#'+casePlayer2).hasClass('empty')) ) {
 
 					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
@@ -149,7 +149,7 @@ var plateau = {
 		} else if ( $('#'+casePlayer1).is('#row'+this.nbLignes) ){
 
 			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
-					(casePlayer2 === casePlayer1+1) || (casePlayer2 === casePlayer1-this.nbLignes) ||
+					(casePlayer2 === casePlayer1+1) || (casePlayer2 === casePlayer1-this.nbColones) ||
 					(!$('#'+casePlayer2).hasClass('empty')) ) {
 
 					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
@@ -159,7 +159,7 @@ var plateau = {
 		} else {	
 
 			while ((casePlayer2 === (casePlayer1+1)) || (casePlayer2 === (casePlayer1-1)) ||
-			(casePlayer2 === (casePlayer1+this.nbLignes)) || (casePlayer2 === (casePlayer1-this.nbLignes)) ||
+			(casePlayer2 === (casePlayer1+this.nbColones)) || (casePlayer2 === (casePlayer1-this.nbColones)) ||
 			(casePlayer2 === casePlayer1) || (!$('#'+casePlayer2).hasClass('empty'))) {
 				
 					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
@@ -176,7 +176,11 @@ var plateau = {
 
 		function verificationDroite(positionVerification){
 			for (var m=1;m<4;m++){
-				if ($('#'+(positionVerification+m)).hasClass('weapon')){
+				if ( $('#'+(positionVerification+m)).hasClass('empty') & ($('#'+(positionVerification+m+plateau.nbColones)).hasClass('player') 
+					|| $('#'+(positionVerification+m-plateau.nbColones)).hasClass('player'))){
+					$('#'+(positionVerification+m)).addClass('movementPossible');
+					break;
+				}else if ($('#'+(positionVerification+m)).hasClass('weapon')){
 					$('#'+(positionVerification+m)).addClass('movementPossible');
 					break;
 				}else if ($('#'+(positionVerification+m)).hasClass('empty')) {
@@ -186,12 +190,16 @@ var plateau = {
 		}
 		function verificationDroiteModulo(positionVerification){
 			for (var m=1;m<4;m++){
-				if (((positionVerification+m)%plateau.nbLignes===0) & ($('#'+(positionVerification+m)).hasClass('empty') || $('#'+(positionVerification+m)).hasClass('weapon'))) {
+				if (((positionVerification+m)%plateau.nbColones===0) & ($('#'+(positionVerification+m)).hasClass('empty') || $('#'+(positionVerification+m)).hasClass('weapon'))) {
 					$('#'+(positionVerification+m)).addClass('movementPossible');
 					break;
 				} else if ($('#'+(positionVerification+m)).hasClass('weapon')){
 					$('#'+(positionVerification+m)).addClass('movementPossible');
 					break;
+				} else if ( $('#'+(positionVerification+m)).hasClass('empty') & ($('#'+(positionVerification+m+plateau.nbColones)).hasClass('player') 
+					|| $('#'+(positionVerification+m-plateau.nbColones)).hasClass('player'))){
+					$('#'+(positionVerification+m)).addClass('movementPossible');
+					break;					
 				} else if ($('#'+(positionVerification+m)).hasClass('empty')) {
 					$('#'+(positionVerification+m)).addClass('movementPossible');
 				} else {break;}
@@ -199,7 +207,11 @@ var plateau = {
 		}
 		function verificationGauche(positionVerification){
 			for (var m=1;m<4;m++){
-				if ($('#'+(positionVerification-m)).hasClass('weapon')){
+				if ( $('#'+(positionVerification-m)).hasClass('empty') & ($('#'+(positionVerification-m+plateau.nbColones)).hasClass('player') 
+					|| $('#'+(positionVerification-m-plateau.nbColones)).hasClass('player'))){
+					$('#'+(positionVerification-m)).addClass('movementPossible');
+					break;					
+				}else if ($('#'+(positionVerification-m)).hasClass('weapon')){
 					$('#'+(positionVerification-m)).addClass('movementPossible');
 					break;
 				}else if ($('#'+(positionVerification-m)).hasClass('empty')){
@@ -209,12 +221,16 @@ var plateau = {
 		}
 		function verificationGaucheModulo(positionVerification){
 			for (var m=1;m<4;m++){positionVerification
-				if (((positionVerification-m)%plateau.nbLignes===1) & ($('#'+(positionVerification-m)).hasClass('empty') || $('#'+(positionVerification-m)).hasClass('weapon'))) {
+				if (((positionVerification-m)%plateau.nbColones===1) & ($('#'+(positionVerification-m)).hasClass('empty') || $('#'+(positionVerification-m)).hasClass('weapon'))) {
 					$('#'+(positionVerification-m)).addClass('movementPossible');
 					break;
 				} else if ($('#'+(positionVerification-m)).hasClass('weapon')){
 					$('#'+(positionVerification-m)).addClass('movementPossible');
 					break;
+				}else if ( $('#'+(positionVerification-m)).hasClass('empty') & ($('#'+(positionVerification-m+plateau.nbColones)).hasClass('player') 
+					|| $('#'+(positionVerification-m-plateau.nbColones)).hasClass('player'))){
+					$('#'+(positionVerification-m)).addClass('movementPossible');
+					break;	
 				}else if ($('#'+(position-m)).hasClass('empty')) {
 					$('#'+(positionVerification-m)).addClass('movementPossible');
 				} else {break;}
@@ -222,17 +238,25 @@ var plateau = {
 		}
 		function verificationBas(positionVerification){
 			for (var m=1; m<4; m++){
-				if ($('#'+(positionVerification+plateau.nbLignes*m)).hasClass('weapon')){
-					$('#'+(positionVerification+plateau.nbLignes*m)).addClass('movementPossible');
+				if ($('#'+(positionVerification+plateau.nbColones*m)).hasClass('empty') & ($('#'+(positionVerification+plateau.nbColones*m+1)).hasClass('player')
+					|| $('#'+(positionVerification+plateau.nbColones*m-1)).hasClass('player'))){
+					$('#'+(positionVerification+plateau.nbColones*m)).addClass('movementPossible');
+					break;					
+				}else if ($('#'+(positionVerification+plateau.nbColones*m)).hasClass('weapon')){
+					$('#'+(positionVerification+plateau.nbColones*m)).addClass('movementPossible');
 					break;
-				}else if ($('#'+(positionVerification+plateau.nbLignes*m)).hasClass('empty')) {
-					$('#'+(positionVerification+plateau.nbLignes*m)).addClass('movementPossible');
+				}else if ($('#'+(positionVerification+plateau.nbColones*m)).hasClass('empty')) {
+					$('#'+(positionVerification+plateau.nbColones*m)).addClass('movementPossible');
 				} else {break;}
 			}
 		}
 		function verificationHaut(positionVerification){
 			for (var m=1;m<4;m++){
-				if ($('#'+(positionVerification-plateau.nbColones*m)).hasClass('weapon')){
+				if ($('#'+(positionVerification-plateau.nbColones*m)).hasClass('empty') & ($('#'+(positionVerification-plateau.nbColones*m-1)).hasClass('player')
+					|| $('#'+(positionVerification-plateau.nbColones*m+1)).hasClass('player'))){
+					$('#'+(positionVerification-plateau.nbColones*m)).addClass('movementPossible');
+					break;
+				}else if ($('#'+(positionVerification-plateau.nbColones*m)).hasClass('weapon')){
 					$('#'+(positionVerification-plateau.nbColones*m)).addClass('movementPossible');
 					break;
 				}else if ($('#'+(positionVerification-plateau.nbColones*m)).hasClass('empty')) {
