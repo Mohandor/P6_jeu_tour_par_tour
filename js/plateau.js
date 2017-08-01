@@ -169,46 +169,132 @@ var plateau = {
 		// On ajoute l'image du joueur deux sur #casePlayer2
 		$('#'+casePlayer2).removeClass('empty').addClass('player');
 		$('<img src ="'+player2.icon+'">').attr('id','player2').addClass('playerPng').appendTo($('#'+casePlayer2));
+	},
+
+	verification: function(position){
+		var positionVerification = arguments[0];
+
+		function verificationDroite(positionVerification){
+			for (var m=1;m<4;m++){
+				if ($('#'+(positionVerification+m)).hasClass('weapon')){
+					$('#'+(positionVerification+m)).addClass('movementPossible');
+					break;
+				}else if ($('#'+(positionVerification+m)).hasClass('empty')) {
+					$('#'+(positionVerification+m)).addClass('movementPossible');
+				} else {break;}
+			}
+		}
+		function verificationDroiteModulo(positionVerification){
+			for (var m=1;m<4;m++){
+				if (((positionVerification+m)%plateau.nbLignes===0) & ($('#'+(positionVerification+m)).hasClass('empty') || $('#'+(positionVerification+m)).hasClass('weapon'))) {
+					$('#'+(positionVerification+m)).addClass('movementPossible');
+					break;
+				} else if ($('#'+(positionVerification+m)).hasClass('weapon')){
+					$('#'+(positionVerification+m)).addClass('movementPossible');
+					break;
+				} else if ($('#'+(positionVerification+m)).hasClass('empty')) {
+					$('#'+(positionVerification+m)).addClass('movementPossible');
+				} else {break;}
+			}
+		}
+		function verificationGauche(positionVerification){
+			for (var m=1;m<4;m++){
+				if ($('#'+(positionVerification-m)).hasClass('weapon')){
+					$('#'+(positionVerification-m)).addClass('movementPossible');
+					break;
+				}else if ($('#'+(positionVerification-m)).hasClass('empty')){
+					$('#'+(positionVerification-m)).addClass('movementPossible');
+				} else {break;}
+			}
+		}
+		function verificationGaucheModulo(positionVerification){
+			for (var m=1;m<4;m++){positionVerification
+				if (((positionVerification-m)%plateau.nbLignes===1) & ($('#'+(positionVerification-m)).hasClass('empty') || $('#'+(positionVerification-m)).hasClass('weapon'))) {
+					$('#'+(positionVerification-m)).addClass('movementPossible');
+					break;
+				} else if ($('#'+(positionVerification-m)).hasClass('weapon')){
+					$('#'+(positionVerification-m)).addClass('movementPossible');
+					break;
+				}else if ($('#'+(position-m)).hasClass('empty')) {
+					$('#'+(positionVerification-m)).addClass('movementPossible');
+				} else {break;}
+			}
+		}
+		function verificationBas(positionVerification){
+			for (var m=1; m<4; m++){
+				if ($('#'+(positionVerification+plateau.nbLignes*m)).hasClass('weapon')){
+					$('#'+(positionVerification+plateau.nbLignes*m)).addClass('movementPossible');
+					break;
+				}else if ($('#'+(positionVerification+plateau.nbLignes*m)).hasClass('empty')) {
+					$('#'+(positionVerification+plateau.nbLignes*m)).addClass('movementPossible');
+				} else {break;}
+			}
+		}
+		function verificationHaut(positionVerification){
+			for (var m=1;m<4;m++){
+				if ($('#'+(positionVerification-plateau.nbColones*m)).hasClass('weapon')){
+					$('#'+(positionVerification-plateau.nbColones*m)).addClass('movementPossible');
+					break;
+				}else if ($('#'+(positionVerification-plateau.nbColones*m)).hasClass('empty')) {
+					$('#'+(positionVerification-plateau.nbColones*m)).addClass('movementPossible');
+				} else {break;}	
+			}
 		}
 
+
+		// Coin haut gauche
+		if ( $('#'+position).hasClass('col1') & $('#'+position).is('#row1') ) {
+			verificationDroite(positionVerification);
+			verificationBas(positionVerification);
+
+
+		// Coin haut droite
+		} else if ( $('#'+position).hasClass('col'+plateau.nbColones) & $('#'+position).is('#row1')) {
+			verificationGauche(positionVerification);
+			verificationBas(positionVerification);
+
+		// Coin bas gauche
+		} else if ( $('#'+position).hasClass('col1') & $('#'+position).is('#row'+plateau.nbLignes) ) {
+			verificationDroite(positionVerification);
+			verificationHaut(positionVerification);
+
+		// Coin bas droite
+		} else if ( $('#'+position).hasClass('col'+plateau.nbColones) & $('#'+position).is('#row'+plateau.nbLignes) ) {
+			veriificationGauche(positionVerification);
+			verificationHaut(positionVerification);
+
+		// Colone de gauche
+		} else if ( $('#'+position).hasClass('col1') ){
+
+			verificationDroite(positionVerification);
+			verificationBas(positionVerification);
+			verificationHaut(positionVerification);
+
+		// Colone de droite
+		} else if ( $('#'+position).hasClass('col'+plateau.nbColones) ) {
+			verificationGauche(positionVerification);
+			verificationBas(positionVerification);
+			verificationHaut(positionVerification);
+
+		// Ligne du haut
+		} else if ( $('#'+position).is('row1') ) {
+			verificationDroiteModulo(positionVerification);
+			verificationGauche(positionVerification);
+			verificationBas(positionVerification);
+
+		// Ligne du bas			
+		} else if ( $('#'+position).is('row'+plateau.nbLignes) ) {
+			verificationDroite(positionVerification);
+			verificationGaucheModulo(positionVerification);
+			verificationHaut(positionVerification);
+
+		// Intérieur du plateau
+		} else {
+			verificationGaucheModulo(positionVerification);
+			verificationDroiteModulo(positionVerification);
+			verificationBas(positionVerification);
+			verificationHaut(positionVerification);
+		}
+	}
+
 }
-
-
-/*// Seconde méthode avec un switch pour chaque cas mais je sais pas si du tout si ça peut marcher commme ça :s
-switch (casePlayer1) {
-	case 1:
-	//while avec vérification (premier coin)
-	break;
-
-	case this.nbLignes:
-	//while avec vérification(deuxième coin)
-	break;
-
-	case this.nbCases-this.nbLignes+1:
-	//while avec vérification (troisième coin)
-	break;
-
-	case this.nbCases:
-	//while avec vérification (quatrième coin)
-	break;
-
-	case (1<casePlayer1<this.nbLignes):
-	// while avec vérification (première ligne en dehors des coins)
-	break;
-
-	case ((this.nbCases-this.nbLignes+1)<casePlayer1<this.nbCases):
-	// while avec vérification (dernière ligne en dehors des coins);
-	break;
-
-	case ((casePlayer1 % this.nbColones === 0) & (this.nbLignes<casePlayer1<this.nbCases)):
-	//while avec vérification (colone de droites en dehors des coins);
-	break;
-
-	case ((casePlayer1 % this.nbColones) & (1<casePlayer1<this.nbCases-this.nbLignes+1)):
-	// while avec vérification (colone de gauche en dehors des coins);
-	break;
-
-	default:
-	//blabla
-	break;
-}*/
