@@ -57,7 +57,7 @@ var plateau = {
 		// On ajoute une classe weapon après avoir retirer la classe empty et on rajoute l'image de l'arme correspondante
 		$('#'+caseWeapon).removeClass('empty').addClass('weapon');
 		var weaponsl = eval('weapons['+l+']');
-		$('<img src ="'+weaponsl.url+'">').attr('id','weapon['+l+']').addClass('weaponPng').appendTo($('#'+caseWeapon));
+		$('<img src ="'+weaponsl.url+'">').attr('id','weapons['+l+']').addClass('weaponPng').appendTo($('#'+caseWeapon));
 		}
 	},
 

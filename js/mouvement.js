@@ -15,6 +15,18 @@ var mouvements = {
 			mouvements.movement(positionPlayer2);
 		}
 		tourDuPlayer1();
+/*
+	if (contact){
+		//combat à mort
+	} else {
+		tourDuPlayer2();
+	}
+
+	if (contact) {
+		//combat à mort
+	} else {
+		mouvements.tourDeJeu();
+	}*/
 	},
 
 	removeMovementPossible: function() {
@@ -25,12 +37,25 @@ var mouvements = {
 		$('.movementPossible').click(function(){
 			var destination = $(this).attr('id');
 			var playerSelect = eval($('#'+position).children().attr('id'));
+			if ($(this).hasClass('weapon')){
+				var newWeapon = $(this).children().attr('id');
+				var oldWeapon = playerSelect.weaponid;
+				playerSelect.weaponid = eval(newWeapon);
+				playerSelect.weapon = eval(newWeapon).name;
+				playerSelect.weapondamage = eval(newWeapon).damage;
+				playerSelect.weaponurl = eval(newWeapon).url;
+			}
+
 			$('#'+destination).append($('#'+position).children());
 			$('#'+position).removeClass('player').addClass('empty');
 			$('#'+destination).removeClass('empty').addClass('player');
 			mouvements.removeMovementPossible();
 		}
-	)}
+	)},
+
+	contact: function() {
+
+	}
 
 }
 

@@ -5,7 +5,7 @@ var player2 = new player('Player2', 100, 'pictures/players/player2.png', weapons
 // Génération d'un plateau de 12 lignes et 12 colonnes 
 plateau.init(12,12);
 
-/*$('#player1').click(function(){
+$('#player1').click(function(){
 	mouvements.removeMovementPossible();
 	var positionPlayer1 = Number($(this).parent('div').attr('id'));
 	plateau.verification(positionPlayer1);
@@ -17,7 +17,7 @@ $('#player2').click(function(){
 	var positionPlayer2 = Number($(this).parent('div').attr('id'));
 	plateau.verification(positionPlayer2);
 	mouvements.movement(positionPlayer2);
-});*/
+});
 
 
-mouvements.tourDeJeu();
+/*mouvements.tourDeJeu();*/
