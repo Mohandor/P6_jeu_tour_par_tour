@@ -7,4 +7,3 @@ function player(nick, life, icon, weapon) {
     this.weapondamage = weapon.damage;
     this.weaponurl = weapon.url;
 }
-

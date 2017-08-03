@@ -46,7 +46,7 @@ var plateau = {
 
 	// Fonction qui génère les 3 autres armes et les place aléatoirement sur des cases empty
 	generationWeapons: function() {
-		for (var l = 1; l < weapons.length; l++) {
+		for (var l = 1; l < 4; l++) {
 
 		// On définit un chiffre entre 1 et 144 et tant que la case à l'id correspondant n'est pas empty on continue
 		var caseWeapon = Math.floor(Math.random()*this.nbCases+1);
@@ -56,7 +56,7 @@ var plateau = {
 
 		// On ajoute une classe weapon après avoir retirer la classe empty et on rajoute l'image de l'arme correspondante
 		$('#'+caseWeapon).removeClass('empty').addClass('weapon');
-		var weaponsl = weapons[l];
+		var weaponsl = eval('weapons['+l+']');
 		$('<img src ="'+weaponsl.url+'">').attr('id','weapon['+l+']').addClass('weaponPng').appendTo($('#'+caseWeapon));
 		}
 	},
@@ -130,8 +130,7 @@ var plateau = {
 
 			while ( (casePlayer2 === casePlayer1) || (casePlayer2 === casePlayer1-1) ||
 					(casePlayer2 === casePlayer1-this.nbColones) || (casePlayer2 === casePlayer1+this.nbColones) ||
-					(!$('#'+casePlayer2).hasClass('empty')) ) {nbColones
-
+					(!$('#'+casePlayer2).hasClass('empty')) ) {
 					var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
 			}
 

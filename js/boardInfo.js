@@ -14,9 +14,9 @@ $('<div/>').addClass('row weaponsPictures').appendTo($('#weaponsInfo'));
 $('<div/>').addClass('row weaponsDamage').appendTo($('#weaponsInfo'));
 
 // Pour chaques armes on ajout les informations de l'arme dans une col-xs-3
-for (var i = 0; i < weapons.length; i++) {
+for (var i = 0; i < 4; i++) {
 
-	var weaponsi = weapons[i];
+	var weaponsi = eval('weapons['+i+']');
 	$('<p/>').addClass('col-xs-3 colWeapon').text(weaponsi.name).appendTo($('.weaponsNames'));
 	$('<img src ="'+weaponsi.url+'">').addClass('col-xs-3 colWeapon').appendTo($('.weaponsPictures'));
 	$('<p/>').addClass('col-xs-3 colWeapon').text(weaponsi.damage).appendTo($('.weaponsDamage'));
