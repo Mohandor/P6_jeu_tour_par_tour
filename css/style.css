@@ -34,14 +34,17 @@
 	height: auto;
 	display: block;
 	margin: auto;
+
 }
 
 .playerPng {
-	z-index: 10;
+	z-index: 20;
 	width: auto;
 	height: 100%;
 	display: block;
 	margin: auto;
+	position: absolute;
+	top: 0;
 }
 
 #infoBoard {

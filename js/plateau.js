@@ -189,7 +189,8 @@ var plateau = {
 		}
 		function verificationDroiteModulo(positionVerification){
 			for (var m=1;m<4;m++){
-				if (((positionVerification+m)%plateau.nbColones===0) & ($('#'+(positionVerification+m)).hasClass('empty') || $('#'+(positionVerification+m)).hasClass('weapon'))) {
+				if (((positionVerification+m)%plateau.nbColones===0) & ($('#'+(positionVerification+m)).hasClass('empty') 
+					|| $('#'+(positionVerification+m)).hasClass('weapon'))) {
 					$('#'+(positionVerification+m)).addClass('movementPossible');
 					break;
 				} else if ($('#'+(positionVerification+m)).hasClass('weapon')){
@@ -220,7 +221,8 @@ var plateau = {
 		}
 		function verificationGaucheModulo(positionVerification){
 			for (var m=1;m<4;m++){positionVerification
-				if (((positionVerification-m)%plateau.nbColones===1) & ($('#'+(positionVerification-m)).hasClass('empty') || $('#'+(positionVerification-m)).hasClass('weapon'))) {
+				if (((positionVerification-m)%plateau.nbColones===1) & ($('#'+(positionVerification-m)).hasClass('empty') 
+					|| $('#'+(positionVerification-m)).hasClass('weapon'))) {
 					$('#'+(positionVerification-m)).addClass('movementPossible');
 					break;
 				} else if ($('#'+(positionVerification-m)).hasClass('weapon')){
