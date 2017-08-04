@@ -12,7 +12,7 @@ var plateau = {
 		this.generationBlocked();
 		this.generationWeapons();
 		this.generationPlayer();
-	},
+		},
 
 	// Fonction qui génère la création d'un plateau vide en fonction du nombres de lignes et de colonnes données
 	generationPlateauVide: function() {
@@ -31,7 +31,7 @@ var plateau = {
 
 	// Fonction qui génère un nombre aléatoire de case 'blocked'
 	generationBlocked: function() {
-		for (var k = 0; k < this.nbBlocked; k++) {
+		for (var j = 0; j < this.nbBlocked; j++) {
 		
 		//On définit un nombre compris entre 1 et 144, si la case avec cet id a déjà la classe 'blocked' on continu
 		var caseBlocked = Math.floor(Math.random()*this.nbCases)+1;
@@ -44,9 +44,28 @@ var plateau = {
 		}	
 	},
 
+	generationElement: function(element, nombre){
+		for (var k = 1; k <= nombre; k++){
+			var caseElement = Math.floor(Math.random()*this.nbCases)+1;
+			this.checkCollision(caseElement);
+
+			$('#'+caseElement).removeClass('empty').addClass('element');
+			var elementk = eval(element+k);
+			$('<img src ="'+elementk.icon+'">').attr('id',element+'k').addClass(element+'Png').appendTo($('#'+caseElement))
+
+
+		}
+	},
+
+	checkCollision: function(caseElement){
+		while (!$('#'+caseElement).hasClass('empty')){
+			caseElement = Math.floor(Math.random()*this.nbCases)+1;
+		}
+	},
+
 	// Fonction qui génère les 3 autres armes et les place aléatoirement sur des cases empty
 	generationWeapons: function() {
-		for (var l = 1; l < 4; l++) {
+		for (var l = 1; l <= 3; l++) {
 
 		// On définit un chiffre entre 1 et 144 et tant que la case à l'id correspondant n'est pas empty on continue
 		var caseWeapon = Math.floor(Math.random()*this.nbCases+1);
@@ -56,8 +75,8 @@ var plateau = {
 
 		// On ajoute une classe weapon après avoir retirer la classe empty et on rajoute l'image de l'arme correspondante
 		$('#'+caseWeapon).removeClass('empty').addClass('weapon');
-		var weaponsl = eval('weapons['+l+']');
-		$('<img src ="'+weaponsl.url+'">').attr('id','weapons['+l+']').addClass('weaponPng').appendTo($('#'+caseWeapon));
+		var weaponl = eval('weapon'+l);
+		$('<img src ="'+weaponl.url+'">').attr('id','weapon'+l).addClass('weaponPng').appendTo($('#'+caseWeapon));
 		}
 	},
 
@@ -72,8 +91,8 @@ var plateau = {
 
 		// Placement de l'image de notre player1 dans la case
 		$('#'+casePlayer1).removeClass('empty').addClass('player');
-		$('<img src ="'+player1.icon+'">').attr('id','player1').addClass('playerPng').appendTo($('#'+casePlayer1));
-
+		$('<img src ="'+player1.icon+'">').attr('id','player1').addClass('playerPng').appendTo($('#'+casePlayer1))
+ 
 		// On définit une variable compris entre 1 et 144 pour placer le joueur2
 		var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
 
