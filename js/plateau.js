@@ -10,7 +10,8 @@ var plateau = {
 		this.nbBlocked = Math.floor((this.nbCases/100)*(Math.floor(Math.random()*10)+5));
 		this.generationPlateauVide();
 		this.generationBlocked();
-		this.generationWeapons();
+		//this.generationWeapons();
+		this.generationElement('weapon', 3)
 		this.generationPlayer();
 		},
 
@@ -51,16 +52,20 @@ var plateau = {
 
 			$('#'+caseElement).removeClass('empty').addClass(element);
 			var elementk = eval(element+k);
-			$('<img src ="'+elementk.icon+'">').attr('id',element+'k').addClass(element+'Png').appendTo($('#'+caseElement))
+			$('<img src ="'+elementk.url+'">').attr('id',element+k).addClass(element+'Png').appendTo($('#'+caseElement))
 
 
 		}
 	},
 
 	checkCollision: function(caseElement){
-		while (!$('#'+caseElement).hasClass('empty')){
-			caseElement = Math.floor(Math.random()*this.nbCases)+1;
-		}
+
+		while( (!$('#'+caseElement-this.nbColones).hasClass('empty') || (caseElement-this.nbColones)>=1) & 
+				(!$('#'+caseElement+this.nbColones).hasClass('empty') || (caseElement+this.nbColones)<=this.nbCases) &
+				!$('#'+caseElement-1).hasClass('empty') & !$('#'+caseElement-1).hasClass('empty') & 
+				!$('#'+caseElement).hasClass('empty')){
+				caseElement = Math.floor(Math.random()*this.nbCases)+1;
+			}
 	},
 
 	// Fonction qui génère les 3 autres armes et les place aléatoirement sur des cases empty
@@ -91,7 +96,7 @@ var plateau = {
 
 		// Placement de l'image de notre player1 dans la case
 		$('#'+casePlayer1).removeClass('empty').addClass('player');
-		$('<img src ="'+player1.icon+'">').attr('id','player1').addClass('playerPng').appendTo($('#'+casePlayer1))
+		$('<img src ="'+player1.url+'">').attr('id','player1').addClass('playerPng').appendTo($('#'+casePlayer1))
  
 		// On définit une variable compris entre 1 et 144 pour placer le joueur2
 		var casePlayer2 = Math.floor(Math.random()*this.nbCases+1);
@@ -186,7 +191,7 @@ var plateau = {
 
 		// On ajoute l'image du joueur deux sur #casePlayer2
 		$('#'+casePlayer2).removeClass('empty').addClass('player');
-		$('<img src ="'+player2.icon+'">').attr('id','player2').addClass('playerPng').appendTo($('#'+casePlayer2));
+		$('<img src ="'+player2.url+'">').attr('id','player2').addClass('playerPng').appendTo($('#'+casePlayer2));
 	}
 
 }

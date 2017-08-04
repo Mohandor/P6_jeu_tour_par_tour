@@ -9,7 +9,7 @@ var player1 = new player('Player1', 100, 'pictures/players/player1.png', weapon0
 var player2 = new player('Player2', 100, 'pictures/players/player2.png', weapon0);
 
 // Génération d'un plateau de 12 lignes et 12 colonnes 
-plateau.init(12,12);
+plateau.init(5,5);
 
 $('#player1').click(function(){
 	mouvements.removeMovementPossible();

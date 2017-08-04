@@ -44,8 +44,7 @@ var mouvements = {
 				playerSelect.weapon = newWeapon;
 				$(this).children('.weaponPng').attr('src', oldWeapon.url);
 				$('#'+playerSelectId+'Weapon').attr('src', newWeapon.url);
-		}
-
+			}
 			$('#'+destination).append($('#'+position).children('.playerPng'));
 			$('#'+position).removeClass('player').addClass('empty');
 			$('#'+destination).removeClass('empty').addClass('player');
