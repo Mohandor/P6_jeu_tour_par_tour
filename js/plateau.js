@@ -49,7 +49,7 @@ var plateau = {
 			var caseElement = Math.floor(Math.random()*this.nbCases)+1;
 			this.checkCollision(caseElement);
 
-			$('#'+caseElement).removeClass('empty').addClass('element');
+			$('#'+caseElement).removeClass('empty').addClass(element);
 			var elementk = eval(element+k);
 			$('<img src ="'+elementk.icon+'">').attr('id',element+'k').addClass(element+'Png').appendTo($('#'+caseElement))
 

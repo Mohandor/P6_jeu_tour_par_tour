@@ -13,7 +13,7 @@ plateau.init(12,12);
 
 $('#player1').click(function(){
 	mouvements.removeMovementPossible();
-	var positionPlayer1 = Number($(this).parent('div').attr('id'));
+	var positionPlayer1 = Number($(this).parent('.player').attr('id'));
 	mouvements.verification(positionPlayer1);
 	mouvements.movement(positionPlayer1);
 });

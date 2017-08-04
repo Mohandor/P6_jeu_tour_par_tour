@@ -38,12 +38,10 @@ var mouvements = {
 			var destination = $(this).attr('id');
 			var playerSelect = eval($('#'+position).children().attr('id'));
 			if ($(this).hasClass('weapon')){
-				var newWeapon = $(this).children().attr('id');
-				var oldWeapon = playerSelect.weaponid;
-				playerSelect.weaponid = eval(newWeapon);
-				playerSelect.weapon = eval(newWeapon).name;
-				playerSelect.weapondamage = eval(newWeapon).damage;
-				playerSelect.weaponurl = eval(newWeapon).url;
+				var newWeapon = eval($(this).children().attr('id'));
+				var oldWeapon = playerSelect.weapon;
+				playerSelect.weapon = newWeapon;
+				$(this).children('.weaponPng').attr('src', oldWeapon.url);
 			}
 
 			$('#'+destination).append($('#'+position).children('.playerPng'));
