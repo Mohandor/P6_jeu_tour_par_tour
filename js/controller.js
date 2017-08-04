@@ -8,14 +8,14 @@ plateau.init(12,12);
 $('#player1').click(function(){
 	mouvements.removeMovementPossible();
 	var positionPlayer1 = Number($(this).parent('div').attr('id'));
-	plateau.verification(positionPlayer1);
+	mouvements.verification(positionPlayer1);
 	mouvements.movement(positionPlayer1);
 });
 
 $('#player2').click(function(){
 	mouvements.removeMovementPossible();
 	var positionPlayer2 = Number($(this).parent('div').attr('id'));
-	plateau.verification(positionPlayer2);
+	mouvements.verification(positionPlayer2);
 	mouvements.movement(positionPlayer2);
 });
 
