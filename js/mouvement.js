@@ -58,16 +58,16 @@ var mouvements = {
 	checkCollisionCombat: function(position, player){
 		var positionCheck = position;
 		// Si il y a un jouer à droite return 'combat'
-		if ( ( ((positionCheck+1)%plateau.nbColones!=1) && (positionCheck+1)<=plateau.nbCases ) && $('#'+(positionCheck+1)).hasClass('player') ){
+		if ( ( ((positionCheck+1)%plateau.nbColonnes!=1) && (positionCheck+1)<=plateau.nbCases ) && $('#'+(positionCheck+1)).hasClass('player') ){
 			return 'combat';
 		// Si il y a un joueur à gauche return 'combat'
-		} else if ( ( ((positionCheck-1)%plateau.nbColones!=0) && (positionCheck-1)>=1 ) && $('#'+(positionCheck-1)).hasClass('player') ){
+		} else if ( ( ((positionCheck-1)%plateau.nbColonnes!=0) && (positionCheck-1)>=1 ) && $('#'+(positionCheck-1)).hasClass('player') ){
 			return 'combat';
 		// Si il y a un joueur en haut return 'combat'
-		} else if ((positionCheck-plateau.nbColones)>=1 && $('#'+(positionCheck-plateau.nbColones)).hasClass('player') ){
+		} else if ((positionCheck-plateau.nbColonnes)>=1 && $('#'+(positionCheck-plateau.nbColonnes)).hasClass('player') ){
 			return 'combat';
 		// Si il y a un joueur en bas return 'combat'
-		} else if ((positionCheck+plateau.nbColones)<=plateau.nbCases && $('#'+(positionCheck+plateau.nbColones)).hasClass('player')){
+		} else if ((positionCheck+plateau.nbColonnes)<=plateau.nbCases && $('#'+(positionCheck+plateau.nbColonnes)).hasClass('player')){
 			return 'combat';
 		// Si c'est le joueur 2 qui jouait return "player1"
 		} else if (player==='player2'){
@@ -82,36 +82,41 @@ var mouvements = {
 	verification: function(position) {
 		// Vérification droite
 		for (var m=1;m<=3;m++){
-			if(((position+m)%plateau.nbColones===1) || (position+m)>(plateau.nbCases)){
+			// Si on est sur la dernière colonne on ne vérifie pas à droite donc break
+			if(position%plateau.nbColonnes===0){
 				break;
-			}else if (((position+m)%plateau.nbColones===0) & (!$('#'+(position+m)).hasClass('player') 
+			// Si la case de droite est sur la dernière colonne et qu'il n'est ni 'player' ni 'blocked' on ajout un 'movementPossible' et on break
+			}else if (((position+m)%plateau.nbColonnes===0) && (!$('#'+(position+m)).hasClass('player') 
 				|| !$('#'+(position+m)).hasClass('blocked'))) {
 				$('#'+(position+m)).addClass('movementPossible');
 				break;
-			} else if ($('#'+(position+m)).hasClass('weapon') & !$('#'+(position+m)).hasClass('player')){
+			// Si la case de droite à une class 'weapon' et pas de class 'player' on ajoute 'movementPossible' et on break 
+			} else if ($('#'+(position+m)).hasClass('weapon') && !$('#'+(position+m)).hasClass('player')){
 				$('#'+(position+m)).addClass('movementPossible');
 				break;
-			} else if ( $('#'+(position+m)).hasClass('empty') & ($('#'+(position+m+plateau.nbColones)).hasClass('player') 
-				|| $('#'+(position+m-plateau.nbColones)).hasClass('player'))){
+			// Si la case de droite est 'empty' et que les cases en haut et en bas ont une class 'player' on ajout un 'movementPossible' et on break
+			} else if ( $('#'+(position+m)).hasClass('empty') && ($('#'+(position+m+plateau.nbColonnes)).hasClass('player') 
+				|| $('#'+(position+m-plateau.nbColonnes)).hasClass('player'))){
 				$('#'+(position+m)).addClass('movementPossible');
-				break;					
+				break;			
+			// Si la case de droite est empty on ajout 'movementPossible'		
 			} else if ($('#'+(position+m)).hasClass('empty')) {
 				$('#'+(position+m)).addClass('movementPossible');
 			} else {break;}
 		}
 		// Verification gauche
 		for (var m=1;m<=3;m++){
-			if(((position-m)%plateau.nbColones===0) || (position-m)<1){
+			if(position%plateau.nbColonnes===1){
 				break;
-			}else if (((position-m)%plateau.nbColones===1) & (!$('#'+(position-m)).hasClass('blocked') 
+			}else if (((position-m)%plateau.nbColonnes===1) && (!$('#'+(position-m)).hasClass('blocked') 
 				|| $('#'+(position-m)).hasClass('player'))) {
 				$('#'+(position-m)).addClass('movementPossible');
 				break;
-			} else if ($('#'+(position-m)).hasClass('weapon') & !$('#'+(position-m)).hasClass('player')){
+			} else if ($('#'+(position-m)).hasClass('weapon') && !$('#'+(position-m)).hasClass('player')){
 				$('#'+(position-m)).addClass('movementPossible');
 				break;
-			}else if ( $('#'+(position-m)).hasClass('empty') & ($('#'+(position-m+plateau.nbColones)).hasClass('player') 
-				|| $('#'+(position-m-plateau.nbColones)).hasClass('player'))){
+			}else if ( $('#'+(position-m)).hasClass('empty') && ($('#'+(position-m+plateau.nbColonnes)).hasClass('player') 
+				|| $('#'+(position-m-plateau.nbColonnes)).hasClass('player'))){
 				$('#'+(position-m)).addClass('movementPossible');
 				break;	
 			}else if ($('#'+(position-m)).hasClass('empty')) {
@@ -120,32 +125,34 @@ var mouvements = {
 		}
 		// Verification haut
 		for (var m=1;m<=3;m++){
-			if((position-plateau.nbColones*m)<1){
+			if((position-plateau.nbColonnes*m)<1){
 				break;
-			}else if ($('#'+(position-plateau.nbColones*m)).hasClass('empty') & ($('#'+(position-plateau.nbColones*m-1)).hasClass('player')
-				|| $('#'+(position-plateau.nbColones*m+1)).hasClass('player'))){
-				$('#'+(position-plateau.nbColones*m)).addClass('movementPossible');
+			}else if ($('#'+(position-plateau.nbColonnes*m)).hasClass('empty') && 
+				(($('#'+(position-plateau.nbColonnes*m-1)).hasClass('player') && position%plateau.nbColonnes!=1)
+				|| ($('#'+(position-plateau.nbColonnes*m+1)).hasClass('player') && position%plateau.nbColonnes!=0))){
+				$('#'+(position-plateau.nbColonnes*m)).addClass('movementPossible');
 				break;
-			}else if ($('#'+(position-plateau.nbColones*m)).hasClass('weapon') & !$('#'+(position-plateau.nbColones*m)).hasClass('player') ){
-				$('#'+(position-plateau.nbColones*m)).addClass('movementPossible');
+			}else if ($('#'+(position-plateau.nbColonnes*m)).hasClass('weapon') && !$('#'+(position-plateau.nbColonnes*m)).hasClass('player') ){
+				$('#'+(position-plateau.nbColonnes*m)).addClass('movementPossible');
 				break;
-			}else if ($('#'+(position-plateau.nbColones*m)).hasClass('empty')) {
-				$('#'+(position-plateau.nbColones*m)).addClass('movementPossible');
+			}else if ($('#'+(position-plateau.nbColonnes*m)).hasClass('empty')) {
+				$('#'+(position-plateau.nbColonnes*m)).addClass('movementPossible');
 			} else {break;}	
 		}
 		// Verification bas
 		for (var m=1; m<4; m++){
-			if((position+plateau.nbColones*m)>plateau.nbCases){
+			if((position+plateau.nbColonnes*m)>plateau.nbCases){
 				break;
-			}else if ($('#'+(position+plateau.nbColones*m)).hasClass('empty') & ($('#'+(position+plateau.nbColones*m+1)).hasClass('player')
-				|| $('#'+(position+plateau.nbColones*m-1)).hasClass('player'))){
-				$('#'+(position+plateau.nbColones*m)).addClass('movementPossible');
+			}else if ($('#'+(position+plateau.nbColonnes*m)).hasClass('empty') && 
+				( ($('#'+(position+plateau.nbColonnes*m+1)).hasClass('player') && position%plateau.nbColonnes!=0 )|| 
+				($('#'+(position+plateau.nbColonnes*m-1)).hasClass('player') && position%plateau.nbColonnes!=1))){
+				$('#'+(position+plateau.nbColonnes*m)).addClass('movementPossible');
 				break;					
-			}else if ($('#'+(position+plateau.nbColones*m)).hasClass('weapon') & !$('#'+(position+plateau.nbColones*m)).hasClass('player') ){
-				$('#'+(position+plateau.nbColones*m)).addClass('movementPossible');
+			}else if ($('#'+(position+plateau.nbColonnes*m)).hasClass('weapon') && !$('#'+(position+plateau.nbColonnes*m)).hasClass('player') ){
+				$('#'+(position+plateau.nbColonnes*m)).addClass('movementPossible');
 				break;
-			}else if ($('#'+(position+plateau.nbColones*m)).hasClass('empty')) {
-				$('#'+(position+plateau.nbColones*m)).addClass('movementPossible');
+			}else if ($('#'+(position+plateau.nbColonnes*m)).hasClass('empty')) {
+				$('#'+(position+plateau.nbColonnes*m)).addClass('movementPossible');
 			} else {break;}
 		}
 
