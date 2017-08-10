@@ -11,9 +11,7 @@ var mouvements = {
 				mouvements.tourDeJeu(nextMove);
 			});
 
-		}
-		
-		if (typeDeTour === 'player2'){
+		}else if (typeDeTour === 'player2'){
 			var position =  eval($('#player2').parent('.player').attr('id'));
 			this.verification(position);
 			this.movementTourDeJeu(position, typeDeTour, function(){
@@ -21,7 +19,9 @@ var mouvements = {
 				var nextMove = mouvements.checkCollisionCombat(newPosition, typeDeTour);
 				mouvements.tourDeJeu(nextMove);
 			});
-		}
+		}else if (typeDeTour === 'combat'){
+
+		}else {}
 	},
 
 
