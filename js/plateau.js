@@ -10,8 +10,8 @@ var plateau = {
 		this.nbBlocked = Math.floor((this.nbCases/100)*(Math.floor(Math.random()*10)+5));
 		this.generationPlateauVide();
 		this.generationBlocked();
-		//this.generationWeapons();
-		this.generationElement('weapon', 3)
+		/*this.generationWeapons();*/
+		this.generationElement('weapon', 3);
 		this.generationPlayer();
 		},
 
@@ -36,7 +36,7 @@ var plateau = {
 		
 		//On définit un nombre compris entre 1 et 144, si la case avec cet id a déjà la classe 'blocked' on continu
 		var caseBlocked = Math.floor(Math.random()*this.nbCases)+1;
-		while ($('#'+caseBlocked).hasClass('blocked')){
+		while (!$('#'+caseBlocked).hasClass('empty')){
 			var caseBlocked = Math.floor(Math.random()*this.nbCases)+1;
 		}
 
@@ -47,9 +47,9 @@ var plateau = {
 
 	generationElement: function(element, nombre){
 		for (var k = 1; k <= nombre; k++){
-			var caseElement = Math.floor(Math.random()*this.nbCases)+1;
-			this.checkCollision(caseElement);
-
+			var caseTest = Math.floor(Math.random()*this.nbCases)+1;
+			var caseElement = this.checkCollision(caseTest, element);
+			
 			$('#'+caseElement).removeClass('empty').addClass(element);
 			var elementk = eval(element+k);
 			$('<img src ="'+elementk.url+'">').attr('id',element+k).addClass(element+'Png').appendTo($('#'+caseElement))
@@ -58,16 +58,22 @@ var plateau = {
 		}
 	},
 
-	checkCollision: function(caseElement){
-
-		while( (!$('#'+caseElement-this.nbColones).hasClass('empty') || (caseElement-this.nbColones)>=1) & 
-				(!$('#'+caseElement+this.nbColones).hasClass('empty') || (caseElement+this.nbColones)<=this.nbCases) &
-				!$('#'+caseElement-1).hasClass('empty') & !$('#'+caseElement-1).hasClass('empty') & 
-				!$('#'+caseElement).hasClass('empty')){
-				caseElement = Math.floor(Math.random()*this.nbCases)+1;
+	checkCollision: function(caseCheck, element){
+		var caseCheck = eval(caseCheck);
+		if (element === 'weapon'){
+			while (!$('#'+caseCheck).hasClass('empty')){
+				var caseCheck = Math.floor(Math.random()*this.nbCases+1);
 			}
+			return caseCheck;
+		} else {
+			while ((!$('#'+(caseCheck+1)).hasClass('empty')) & (!$('#'+(caseCheck-1)).hasClass('empty')) &
+			(!$('#'+(caseCheck+this.nbColones)).hasClass('empty')) & (!$('#'+(caseCheck-this.nbColonnes)).hasClass('empty')) & 
+			(!$('#'+caseCheck).hasClass('empty')) ){
+			var caseCheck = Math.floor(Math.random()*this.nbCases)+1;
+			}
+		return caseCheck;
+		}
 	},
-
 	// Fonction qui génère les 3 autres armes et les place aléatoirement sur des cases empty
 	generationWeapons: function() {
 		for (var l = 1; l <= 3; l++) {
