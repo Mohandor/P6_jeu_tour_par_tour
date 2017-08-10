@@ -11,18 +11,5 @@ var player2 = new player('Player2', 100, 'pictures/players/player2.png', weapon0
 // Génération d'un plateau de 12 lignes et 12 colonnes 
 plateau.init(12,12);
 
-/*$('#player1').click(function(){
-	mouvements.removeMovementPossible();
-	var positionPlayer1 = Number($(this).parent('.player').attr('id'));
-	mouvements.verification(positionPlayer1);
-	mouvements.movement(positionPlayer1);
-});
-
-$('#player2').click(function(){
-	mouvements.removeMovementPossible();
-	var positionPlayer2 = Number($(this).parent('div').attr('id'));
-	mouvements.verification(positionPlayer2);
-	mouvements.movement(positionPlayer2);
-});*/
-
+// Lancement de la partie avec le tourDeJeu du player1
 mouvements.tourDeJeu('player1');
