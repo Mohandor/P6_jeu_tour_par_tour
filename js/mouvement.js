@@ -31,7 +31,7 @@ var mouvements = {
 
 	movementTourDeJeu: function(position, player, callback){
 		$('.movementPossible').click(function(){
-			var destination = eval($(this).attr('id'));
+			var destination = $(this).attr('id');
 			var playerEnJeu = eval(player);
 
 			if ($(this).hasClass('weapon')){
@@ -56,7 +56,7 @@ var mouvements = {
 	},
 
 	checkCollisionCombat: function(position, player){
-		var positionCheck = eval(position);
+		var positionCheck = position;
 		// Si il y a un jouer à droite return 'combat'
 		if ( ( ((positionCheck+1)%plateau.nbColones!=1) & (positionCheck+1)<=plateau.nbCases ) & $('#'+(positionCheck+1)).hasClass('player') ){
 			return 'combat';
