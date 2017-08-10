@@ -58,16 +58,16 @@ var mouvements = {
 	checkCollisionCombat: function(position, player){
 		var positionCheck = eval(position);
 		// Si il y a un jouer à droite return 'combat'
-		if ( ( ((positionCheck+1)%plateau.nbColones!=1) & (positionCheck+1)<=plateau.nbCases ) & $('#'+positionCheck+1).hasClass('player') ){
+		if ( ( ((positionCheck+1)%plateau.nbColones!=1) & (positionCheck+1)<=plateau.nbCases ) & $('#'+(positionCheck+1)).hasClass('player') ){
 			return 'combat';
 		// Si il y a un joueur à gauche return 'combat'
-		} else if ( ( ((positionCheck-1)%plateau.nbColones!=0) & (positionCheck-1)>=1 ) & $('#'+positionCheck-1).hasClass('player') ){
+		} else if ( ( ((positionCheck-1)%plateau.nbColones!=0) & (positionCheck-1)>=1 ) & $('#'+(positionCheck-1)).hasClass('player') ){
 			return 'combat';
 		// Si il y a un joueur en haut return 'combat'
-		} else if ((positionCheck-plateau.nbColones)>=1 & $('#'+positionCheck-plateau.nbColones).hasClass('player') ){
+		} else if ((positionCheck-plateau.nbColones)>=1 & $('#'+(positionCheck-plateau.nbColones)).hasClass('player') ){
 			return 'combat';
 		// Si il y a un joueur en bas return 'combat'
-		} else if ((positionCheck+plateau.nbColones)<=plateau.nbCases & $('#'+positionCheck+plateau.nbColones).hasClass('player')){
+		} else if ((positionCheck+plateau.nbColones)<=plateau.nbCases & $('#'+(positionCheck+plateau.nbColones)).hasClass('player')){
 			return 'combat';
 		// Si c'est le joueur 2 qui jouait return "player1"
 		} else if (player==='player2'){
