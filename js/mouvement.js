@@ -79,29 +79,6 @@ var mouvements = {
 
 	},
 
-	movement: function(position) {
-		$('.movementPossible').click(function(){
-			var destination = $(this).attr('id');
-			var playerSelect = eval($('#'+position).children('.playerPng').attr('id'));
-			var playerSelectId = $('#'+position).children('.playerPng').attr('id');
-			if ($(this).hasClass('weapon')){
-				var newWeapon = eval($(this).children().attr('id'));
-				var oldWeapon = playerSelect.weapon;
-				playerSelect.weapon = newWeapon;
-				$(this).children('.weaponPng').attr('src', oldWeapon.url);
-				$('#'+playerSelectId+'Weapon').attr('src', newWeapon.url);
-			}
-			$('#'+destination).append($('#'+position).children('.playerPng'));
-			$('#'+position).removeClass('player').addClass('empty');
-			$('#'+destination).removeClass('empty').addClass('player');
-			mouvements.removeMovementPossible();
-		}
-	)},
-
-	contact: function() {
-
-	},
-
 	verification: function(position) {
 		// Vérification droite
 		for (var m=1;m<=3;m++){
