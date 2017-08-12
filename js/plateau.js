@@ -24,7 +24,7 @@ var plateau = {
 
 				// Dans chaques lignes pour chaques colonnes on créait une div avec les classes si dessou et une id compris entre 1 et le nbLignes*nbColonnes qu'on appendTo la division #row+i
 				for (var j = 1; j <= this.nbColonnes; j++) {
-					$('<div/>').addClass('col-xs-1 colBoardGame empty col'+j).attr('id', this.nbColonnes*(i-1)+j).appendTo($('#row'+i));
+					$('<div/>').addClass('col-xs-1 colBoardGame empty col'+j).text(this.nbColonnes*(i-1)+j).attr('id', this.nbColonnes*(i-1)+j).appendTo($('#row'+i));
 				}
 		}
 	},
@@ -72,13 +72,13 @@ var plateau = {
 			}
 
 		// On vérifie si la case de droite est 'empty' ou qu'on est sur la dernière colonne et on continue
-		if ($('#'+(caseCheck+1)).hasClass('empty') || caseCheck%plateau.nbColonnes==0){
+		if ($('#'+(caseCheck+1)).hasClass('empty') || caseCheck%plateau.nbColonnes === 0){
 			// On vérifie si la case de gauche est 'empty' ou qu'on est sur la première colonne et on continue
-			if ($('#'+(caseCheck-1)).hasClass('empty') || caseCheck%plateau.nbColonnes==1){
+			if ($('#'+(caseCheck-1)).hasClass('empty') || caseCheck%plateau.nbColonnes === 1){
 				// On vérifie si la case du haut est 'empty' et qu'on est bien sur notre tableau et on continue
-				if ($('#'+(caseCheck-plateau.nbColonnes)).hasClass('empty') && (caseCheck-plateau.nbColonnes >=1)){
+				if ($('#'+(caseCheck-plateau.nbColonnes)).hasClass('empty') && (caseCheck-plateau.nbColonnes >= 1)){
 					// On vérifie si la case du bas est 'empty' et qu'on est bien sur notre tableau
-					if($('#'+(caseCheck+plateau.nbColonnes)).hasClass('empty') && (caseCheck+plateau.nbColonnes <=plateau.nbCases)){
+					if($('#'+(caseCheck+plateau.nbColonnes)).hasClass('empty') && (caseCheck+plateau.nbColonnes <= plateau.nbCases)){
 						// Si les cases adjacentes sont 'empty' on return true
 						return true;
 					}

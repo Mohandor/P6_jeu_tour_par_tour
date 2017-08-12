@@ -1,6 +1,7 @@
 .colBoardGame {
 	border: 1px solid black;
 	height: 60px;
+	font-size: 2rem;
 }
 
 .empty {
