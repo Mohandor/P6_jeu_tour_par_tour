@@ -29,11 +29,11 @@ var plateau = {
 		}
 	},
 
-	// Fonction qui génère un nombre aléatoire de case 'blocked'
+	// Fonction qui génère les cases 'blocked'
 	generationBlocked: function() {
 		for (var j = 0; j < this.nbBlocked; j++) {
 		
-		//On définit un nombre compris entre 1 et 144, si la case avec cet id a déjà la classe 'blocked' on continu
+		//On définit un nombre compris entre 1 et 144, si la case avec cet id a déjà la classe 'blocked' on en génère un autre
 		var caseBlocked = Math.floor(Math.random()*this.nbCases)+1;
 		while (!$('#'+caseBlocked).hasClass('empty')){
 			var caseBlocked = Math.floor(Math.random()*this.nbCases)+1;
@@ -57,9 +57,9 @@ var plateau = {
 
 			// Une fois que notre case est passé dans la boucle while on ajoute notre element, on commence par retirer la classe empty et en ajoutant le classe element
 			$('#'+caseChoisie).removeClass('empty').addClass(element);
-			// On créait ensuite une image avec comme source l'url de notre elementk, l'id de notre element+k, la classe element+Png qu'on fait appenTo notre case
+			// On créait ensuite une image avec comme source l'url de notre elementk, l'id est notre element+k, la classe element+Png qu'on fait appendTo à notre case
 			var elementk = eval(element+k);
-			$('<img src ="'+elementk.url+'">').attr('id',element+k).addClass(element+'Png').appendTo($('#'+caseChoisie))
+			$('<img src ="'+elementk.url+'">').attr('id',element+k).addClass(element+'Png').appendTo($('#'+caseChoisie));
 
 
 		}

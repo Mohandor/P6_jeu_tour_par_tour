@@ -65,3 +65,15 @@
 .weaponsPictures {
 	padding: 5px 0px 15px 0px;
 }
+
+#choixCombat {
+	z-index: 200;
+	position: absolute;
+	left: 35%;
+	top: 30%;
+	width: 30%;
+	height: 25%;
+	text-align: center;
+	border: solid;
+	background-color: white;
+}

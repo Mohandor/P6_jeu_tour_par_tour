@@ -1,4 +1,4 @@
-var mouvements = {
+var mouvements = {	
 
 	tourDeJeu: function(typeDeTour) {
 	
@@ -19,7 +19,9 @@ var mouvements = {
 				var nextMove = mouvements.checkCollisionCombat(newPosition, typeDeTour);
 				mouvements.tourDeJeu(nextMove);
 			});
-			}else if (typeDeTour === 'combat'){
+
+		}else if (typeDeTour === 'combat'){
+			combat.tourDeCombat();
 
 		}else {
 
@@ -58,6 +60,7 @@ var mouvements = {
 		)
 
 	},
+
 
 	checkCollisionCombat: function(position, player){
 		var positionCheck = position;
@@ -174,7 +177,6 @@ var mouvements = {
 				$('#'+(position+plateau.nbColonnes*m)).addClass('movementPossible');
 			} else {break;}
 		}
-
 	}
 }
 
