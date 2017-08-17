@@ -29,6 +29,7 @@ var mouvements = {
 
 
 	removeMovementPossible: function() {
+		$('.movementPossible').unbind('click');
 		$('div').removeClass('movementPossible');
 	},
 
