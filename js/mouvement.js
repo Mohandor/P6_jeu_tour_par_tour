@@ -21,7 +21,6 @@ var mouvements = {
 			});
 
 		}else if (typeDeTour === 'combat'){
-			combat.tourDeCombat();
 
 		}else {
 
@@ -30,15 +29,14 @@ var mouvements = {
 
 
 	removeMovementPossible: function() {
-		$('.movementPossible').removeClass('movementPossible');
+		$('div').removeClass('movementPossible');
 	},
 
 	movementTourDeJeu: function(position, player, callback){
-		$('.movementPossible').click(function(){
+		$('.movementPossible').one('click', function(event){
 			var destination = eval($(this).attr('id'));
 			var playerEnJeu = eval(player);
-			console.log(destination);
-			console.log(playerEnJeu);
+			console.log(destination)
 
 			if ($(this).hasClass('weapon')){
 				var newWeapon = eval($(this).children().attr('id'));
@@ -98,7 +96,7 @@ var mouvements = {
 				$('#'+(position+m)).addClass('movementPossible');
 				break;
 			// Si la case de droite a une classe 'weapon' et pas de classe 'player' on ajoute 'movementPossible' et on break 
-			} else if ($('#'+(position+m)).hasClass('weapon') && !$('#'+(position+m)).hasClass('player')){
+			} else if ($('#'+(position+m)).hasClass('weapon') && (!$('#'+(position+m)).hasClass('player'))){
 				$('#'+(position+m)).addClass('movementPossible');
 				break;
 			// Si la case de droite est 'empty' et que les cases en haut et en bas ont une classe 'player' on ajout un 'movementPossible' et on break

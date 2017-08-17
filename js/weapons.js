@@ -30,7 +30,7 @@ var combat = {
 
 	choixCombat: function(player){
 			$('<div/>').addClass('row').attr('id', 'choixCombat').appendTo($("#boardGame"));
-			$('<p/>').addClass('col-sm-12').text("C'est au tour de "+player+" de jouer, que va-t-il faire?").appendTo($("#choixCombat"));
+			$('<p/>').text("C'est au tour de "+player+" de jouer, que va-t-il faire?").appendTo($("#choixCombat"));
 	},
 
 	checkAlive: function(){
