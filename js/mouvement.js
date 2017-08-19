@@ -1,7 +1,8 @@
 var mouvements = {	
 
 	tourDeJeu: function(typeDeTour) {
-	
+
+		// Si l'argument est 'player1'
 		if (typeDeTour === 'player1'){
 			var position =  eval($('#player1').parent('.player').attr('id'));
 			this.verification(position);
@@ -11,6 +12,7 @@ var mouvements = {
 				mouvements.tourDeJeu(nextMove);
 			});
 
+		// Si l'argument est 'player2'
 		}else if (typeDeTour === 'player2'){
 			var position =  eval($('#player2').parent('.player').attr('id'));
 			this.verification(position);
@@ -20,40 +22,67 @@ var mouvements = {
 				mouvements.tourDeJeu(nextMove);
 			});
 
+		// Si l'argument est 'combat'
 		}else if (typeDeTour === 'combat'){
+			swal({
+				title: "Combat",
+				text: "Le duel à mort commence!",S
+				imageUrl: "pictures/fight/h_droite_combat_60x60.gif",
+				timer: 3000,
+  				showConfirmButton: false
+			});
 
 		}else {
 
 		}
 	},
 
-
+	// Fonction pour enlever et unbind les cases 'movementPossible'
 	removeMovementPossible: function() {
+		// Unbind au click les cases avec une classe 'movementPossible'
 		$('.movementPossible').unbind('click');
+		// Enlève la classe 'movementPossible' aux div qui la possèdent
 		$('div').removeClass('movementPossible');
 	},
 
+	// Fonction pour un tour de déplacement d'un joueur
 	movementTourDeJeu: function(position, player, callback){
+		// Quand on click sur une case ayant une class 'movementPossible' on lance un event
 		$('.movementPossible').one('click', function(event){
-			var destination = eval($(this).attr('id'));
+			// On définit une variable qui correspond à l'object player
 			var playerEnJeu = eval(player);
-			console.log(destination)
 
+			// Si la case cliqué à une classe 'weapon'
 			if ($(this).hasClass('weapon')){
+				// On définit l'objet de l'arme qui est sur la case et qui va être ramassé
 				var newWeapon = eval($(this).children().attr('id'));
+				// On définit l'objet de l'arme que le joueur porte avant le déplacement
 				var oldWeapon = playerEnJeu.weapon;
+
+				// On change les attribut de l'img sur la case en y mettant celle de l'arme que le joueur portait
 				$(this).children('.weaponPng').attr('src', oldWeapon.url).attr('id', oldWeapon.id);
+				
+				// On définit l'arme que le joueur porte avec la nouvelle arme
 				playerEnJeu.weapon = newWeapon;
+				
+				// Et on met à jour l'image de l'arme porté par le joueur dans le bandeau d'information
 				$('#'+player+'Weapon').attr('src', newWeapon.url);
 			} 
 
+			// Ensuite on gère les classes de la case que le joueur quitte
+			// Si elle a une classe 'weapon' on enlève juste la classe 'player'
 			if ($('#'+position).hasClass('weapon')){
 				$('#'+position).removeClass('player');
+			// Sinon on enlève la classe 'player' et on ajoute la classe 'empty'
 			} else {
 				$('#'+position).removeClass('player').addClass('empty');
 			}
-			$('#'+destination).addClass('player').removeClass('empty').append($('#'+position).children('.playerPng'));
+
+			// On déplace le joueur en faisant un transfert de l'img playerPng vvers la nouvelle case
+			$(this).addClass('player').removeClass('empty').append($('#'+position).children('.playerPng'));
+			// On fait appelle à la fonction removeMovementPossible pour enlève les classes movementPossible et faire unbid sur les click
 			mouvements.removeMovementPossible();
+			// On apelle la fonction callback() après avoir effectuer le reste de la fonction
 			callback();
 			}
 		)
