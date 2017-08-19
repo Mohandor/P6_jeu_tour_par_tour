@@ -26,7 +26,7 @@ var mouvements = {
 		}else if (typeDeTour === 'combat'){
 			swal({
 				title: "Combat",
-				text: "Le duel à mort commence!",S
+				text: "Le duel à mort commence!",
 				imageUrl: "pictures/fight/h_droite_combat_60x60.gif",
 				timer: 3000,
   				showConfirmButton: false
