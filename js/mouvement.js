@@ -24,13 +24,10 @@ var mouvements = {
 
 		// Si l'argument est 'combat'
 		}else if (typeDeTour === 'combat'){
-			swal({
-				title: "Combat",
-				text: "Le duel à mort commence!",
-				imageUrl: "pictures/fight/h_droite_combat_60x60.gif",
-				timer: 3000,
-  				showConfirmButton: false
+			combat.startFight(function(){
+				setTimeout(function(){combat.createCombatBox(function(){combat.tourDeCombat(player1)})}, 3000)
 			});
+			
 
 		}else {
 
@@ -48,7 +45,7 @@ var mouvements = {
 	// Fonction pour un tour de déplacement d'un joueur
 	movementTourDeJeu: function(position, player, callback){
 		// Quand on click sur une case ayant une class 'movementPossible' on lance un event
-		$('.movementPossible').one('click', function(event){
+		$('.movementPossible').on('click', function(event){
 			// On définit une variable qui correspond à l'object player
 			var playerEnJeu = eval(player);
 

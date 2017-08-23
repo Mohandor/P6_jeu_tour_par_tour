@@ -35,7 +35,22 @@
 	height: auto;
 	display: block;
 	margin: auto;
+}
 
+#combatBox{
+	position: absolute; 
+  	top: 40%; 
+  	left: 50%; 
+  	transform: translate(-50%, -50%);
+  	width: 35%;
+  	height: 25%;
+  	background-color: white;
+  	z-index: 1000;
+}
+
+#combatBox p {
+	text-align: center;
+	padding: 10% 0 10% 0;
 }
 
 .playerPng {

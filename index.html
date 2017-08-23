@@ -6,15 +6,22 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/mediaelementplayer.min.css">
     <title>Jeu tour par tour</title>
 </head>
 
 <body>
 	<div id="boardGame" class="container"></div>
 	<div id="infoBoard" class="container"></div>
+	<div id="musicBoard">
+		<audio class="mejs__player" style="width: 100%" preload="auto" controls>
+		    <source src="music/Zanarkand.mp3" />
+		</audio>
+	</div>
 
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/sweetalert.min.js"></script>
+    <script src="js/mediaelement-and-player.min.js"></script>
     <script src="js/plateau.js"></script>
     <script src="js/weapons.js"></script>
     <script src="js/players.js"></script>

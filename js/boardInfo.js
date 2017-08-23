@@ -27,11 +27,11 @@ $('<div/>').addClass('row').attr('id', 'player1InfoRow').appendTo($('#player1Inf
 $('<div/>').addClass('col-xs-12').attr('id','player1Name').text(player1.nick).appendTo($('#player1InfoRow'));
 $('<img src="'+player1.url+'">').addClass('col-sm-4 playerIcon').appendTo($('#player1InfoRow'));
 $('<img src="'+player1.weapon.url+'">').attr('id','player1Weapon').addClass('col-sm-4 playerWeapon)').appendTo($('#player1InfoRow'));
-$('<div/>').addClass('col-sm-4 playerLife').text('PV:'+player1.life).appendTo($('#player1InfoRow'));
+$('<div/>').addClass('col-sm-4 playerLife').attr('id','player1Life').text('PV:'+player1.life).appendTo($('#player1InfoRow'));
 
 // Division du joueur 2
 $('<div/>').addClass('row').attr('id', 'player2InfoRow').appendTo($('#player2Info'));
 $('<div/>').addClass('col-xs-12').attr('id','player1Name').text(player2.nick).appendTo($('#player2InfoRow'));
 $('<img src="'+player2.url+'">').addClass('col-sm-4 playerIcon').appendTo($('#player2InfoRow'));
 $('<img src="'+player2.weapon.url+'">').attr('id','player2Weapon').addClass('col-sm-4 playerWeapon)').appendTo($('#player2InfoRow'));
-$('<div/>').addClass('col-sm-4 playerLife').text('PV:'+player2.life).appendTo($('#player2InfoRow'));
+$('<div/>').addClass('col-sm-4 playerLife').attr('id','player2Life').text('PV:'+player2.life).appendTo($('#player2InfoRow'));
