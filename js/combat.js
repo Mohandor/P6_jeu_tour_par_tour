@@ -44,7 +44,7 @@ var combat = {
 					player2.life = player2.life - 0.5*player1.weapon.damage;
 				}
 				
-				// Les PV du joueur 2 ne peuvent pas déscendre en dessous de 0
+				// Les PV du joueurs 2 ne peuvent pas déscendre en dessous de 0
 				if(player2.life<0){player2.life=0};
 
 				// On modifie les PV dans le boardInfo
@@ -53,25 +53,19 @@ var combat = {
 
 			// Si c'est le joueur 2 qui joue
 			if(player.nick === 'Player2'){
-				// Si le joueur 1 est en position d'attaque il perd autant de PV que les dégats de l'arme du joueur 2
 				if(player1.shield === false){
 					player1.life = player1.life - player2.weapon.damage;
 				}
-				// Si le joueur 1 est en position défensive il perd seulement la moitié des PV des dégats de l'arme du joueur 2
 				if(player1.shield === true){
 					player1.life = player1.life - 0.5*player2.weapon.damage;
 				}
-				// Les PV du joueur 1 ne peuvent pas déscendre en dessous de 0
+			
 				if(player1.life<0){player1.life=0};
-
-				// On modifie les PV dans le boardInfo
 				$("#player1Life").text('PV: '+player1.life);
 			}
 		});
 
-		// Ce qui se passe si le joueur décide de se défendre en cliquant sur le bouton
 		$('#buttonDefense').on('click', function(){
-			// On passe la position du joueur en défensif en mettant sa valeur de shiel en true
 			if(player.nick === 'Player1'){
 				player1.shield = true;
 			} 
@@ -80,9 +74,7 @@ var combat = {
 			}
 		});
 
-		// Ce qui se passe après un click quel qu'il siot
 		$('input').on('click', function(){
-			// On retire la div et on lance la fonction checkAlive pour la prochaine étape du combat
 			combat.removeCombatBoxRow(function(){
 				combat.checkAlive(player);
 			});
@@ -90,17 +82,14 @@ var combat = {
 	},
 
 	checkAlive: function(player){
-		// Si le player1 n'a plus de PV le player2 a gagné
 		if (player1.life === 0){
-			//Ajout d'un message pour la victoire du joueur
+			//player2 has won
 			$('<p/>').addClass('col-sm-12').text("Player2 a gagné ce duel!").appendTo('#combatBox');
-		
-		// Si le player2 n'a plus de PV le player1 a gagné
-		}else if (player2.life === 0){
-			//Ajout d'un message pour la victoire du joueur
+		} else if (player2.life === 0){
+			//player1 has won
 			$('<p/>').addClass('col-sm-12').text("Player1 a gagné ce duel!").appendTo('#combatBox');
-		// Si les deux joueurs sont encore en vie on continue le combat en lançant un nouveau tour de combat de l'autre joueur
 		} else {
+			// On continue le combat en relançant un nouveau tour de combat du joueur opposé
 			if (player.nick === "Player1"){
 				combat.tourDeCombat(player2);	
 			}
