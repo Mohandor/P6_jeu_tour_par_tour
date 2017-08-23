@@ -1,67 +1,69 @@
-.colBoardGame {
-	border: 1px solid black;
-	height: 60px;
-	font-size: 2rem;
-}
+/*
+1 - Plateau l14
+	1.1 BoardGame l15
+	1.2 BoardElement l47
 
-.empty {
-	background-image: url(../pictures/hw2_grass.png);
-	z-index: 1;
-}
+2 - BoardInfo l66
 
-.movementPossible {
-	box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 0.5) inset;
-	z-index: 150;
-}
+3- Combat l82
 
-.blocked {
-	background-image: url(../pictures/mountains.png);
-	background-size: 100% auto;
-	z-index: 1;
-}
+4 - Music
+*/
 
-#boardGame {
-	border-collapse: collapse;
+/*1 - Plateau*/
+	/*1.1 -BoardGame*/
+	.colBoardGame {
+		border: 1px solid black;
+		height: 60px;
+		font-size: 2rem;
+	}
 
-}
+	#boardGame {
+		border-collapse: collapse;
 
-.weapon, .player {
-	background-image: url(../pictures/hw2_grass.png);
-}
+	}
 
-.weaponPng {
-	z-index: 10;
-	width: 100%;
-	height: auto;
-	display: block;
-	margin: auto;
-}
+	.empty {
+		background-image: url(../pictures/hw2_grass.png);
+		z-index: 1;
+	}
 
-#combatBox{
-	position: absolute; 
-  	top: 40%; 
-  	left: 50%; 
-  	transform: translate(-50%, -50%);
-  	width: 35%;
-  	height: 25%;
-  	background-color: white;
-  	z-index: 1000;
-}
+	.movementPossible {
+		box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 0.5) inset;
+		z-index: 150;
+	}
 
-#combatBox p {
-	text-align: center;
-	padding: 10% 0 10% 0;
-}
+	.blocked {
+		background-image: url(../pictures/mountains.png);
+		background-size: 100% auto;
+		z-index: 1;
+	}
 
-.playerPng {
-	z-index: 20;
-	width: auto;
-	height: 100%;
-	display: block;
-	margin: auto;
-	position: absolute;
-	top: 0;
-}
+	.weapon, .player {
+		background-image: url(../pictures/hw2_grass.png);
+	}
+
+	/*1.2 - BoardElement*/
+
+	.weaponPng {
+		z-index: 10;
+		width: 100%;
+		height: auto;
+		display: block;
+		margin: auto;
+	}
+
+	.playerPng {
+		z-index: 20;
+		width: auto;
+		height: 100%;
+		display: block;
+		margin: auto;
+		position: absolute;
+		top: 0;
+	}
+
+/*2 - BoardInfo*/
 
 #infoBoard {
 	padding-top: 15px;
@@ -77,8 +79,22 @@
 	border: 1px solid black;
 }
 
-.weaponsPictures {
-	padding: 5px 0px 15px 0px;
+/*3 - Combat*/
+
+#combatBox{
+	position: absolute; 
+  	top: 40%; 
+  	left: 50%; 
+  	transform: translate(-50%, -50%);
+  	width: 35%;
+  	height: 25%;
+  	background-color: white;
+  	z-index: 1000;
+}
+
+#combatBox p {
+	text-align: center;
+	padding: 10% 0 10% 0;
 }
 
 #choixCombat {

@@ -2,10 +2,10 @@ var combat = {
 
 	startFight: function(callback){
 		swal({
-			title: "Combat",
-			text: "Le duel à mort commence!",
-			imageUrl: "pictures/fight/h_droite_combat_60x60.gif",
-			timer: 3000,
+			title: titreStartFight,
+			text: messageStartFight,
+			imageUrl: imageStartFight,
+			timer: timerStartFight,
 			showConfirmButton: false
 		});
 		callback();
@@ -25,8 +25,8 @@ var combat = {
 	tourDeCombat: function(player) {
 		$('<div/>').addClass('row').attr('id', 'combatBoxRow').appendTo('#combatBox').hide().fadeIn(500);
 		$('<p/>').addClass('col-sm-12').text("C'est au tour de "+player.nick+" de jouer, que va-t-il faire?").appendTo('#combatBoxRow');
-		$('<input/>').addClass('col-sm-offset-1').addClass('col-sm-4').attr({type: 'button', id: 'buttonAttack', value: 'FREEDOM!!!'}).appendTo('#combatBoxRow');
-		$('<input/>').addClass('col-sm-offset-2').addClass('col-sm-4').attr({type: 'button', id: 'buttonDefense', value: 'TURTLE!!!'}).appendTo('#combatBoxRow');
+		$('<input/>').addClass('col-sm-offset-1').addClass('col-sm-4').attr({type: 'button', id: 'buttonAttack', value: buttonAttack}).appendTo('#combatBoxRow');
+		$('<input/>').addClass('col-sm-offset-2').addClass('col-sm-4').attr({type: 'button', id: 'buttonDefense', value: buttonDefense}).appendTo('#combatBoxRow');
 
 		// Ce qui se passe si le joueur décide d'attaquer en cliquant sur le bouton
 		$('#buttonAttack').on('click', function(){
@@ -84,10 +84,10 @@ var combat = {
 	checkAlive: function(player){
 		if (player1.life === 0){
 			//player2 has won
-			$('<p/>').addClass('col-sm-12').text("Player2 a gagné ce duel!").appendTo('#combatBox');
+			$('<p/>').addClass('col-sm-12').text(player2VictoryMessage).appendTo('#combatBox');
 		} else if (player2.life === 0){
 			//player1 has won
-			$('<p/>').addClass('col-sm-12').text("Player1 a gagné ce duel!").appendTo('#combatBox');
+			$('<p/>').addClass('col-sm-12').text(player1VictoryMessage).appendTo('#combatBox');
 		} else {
 			// On continue le combat en relançant un nouveau tour de combat du joueur opposé
 			if (player.nick === "Player1"){

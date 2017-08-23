@@ -10,8 +10,8 @@ var plateau = {
 		this.nbBlocked = Math.floor((this.nbCases/100)*(Math.floor(Math.random()*10)+5));
 		this.generationPlateauVide();
 		this.generationBlocked();
-		this.generationElement('weapon', 3);
-		this.generationElement('player', 2);
+		this.generationElement('weapon', nbWeapons);
+		this.generationElement('player', nbPlayers);
 		},
 
 	// Fonction qui génère la création d'un plateau vide en fonction du nombres de lignes et de colonnes données
