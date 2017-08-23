@@ -62,8 +62,10 @@ var combat = {
 	checkAlive: function(player){
 		if (player1.life === 0){
 			//player2 has won
+			$('<p/>').addClass('col-sm-12').text("Player2 a gagné ce duel!").appendTo('#combatBox');
 		} else if (player2.life === 0){
 			//player1 has won
+			$('<p/>').addClass('col-sm-12').text("Player1 a gagné ce duel!").appendTo('#combatBox');
 		} else {
 			// On continue le combat
 			if (player.nick === "Player1"){
