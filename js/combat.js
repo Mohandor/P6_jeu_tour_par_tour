@@ -28,7 +28,7 @@ var combat = {
 		$('<input/>').addClass('col-sm-offset-1').addClass('col-sm-4').attr({type: 'button', id: 'buttonAttack', value: buttonAttack}).appendTo('#combatBoxRow');
 		$('<input/>').addClass('col-sm-offset-2').addClass('col-sm-4').attr({type: 'button', id: 'buttonDefense', value: buttonDefense}).appendTo('#combatBoxRow');
 
-		// Ce qui se passe si le joueur décide d'attaquer en cliquant sur le bouton
+		// Ce qui se passe si le joueur décide d'attaquer en cliquant sur le bouton correspondant
 		$('#buttonAttack').on('click', function(){
 			// Le shield est mis ou remis à false, il est en position d'attaque
 			player.shield = false;
@@ -44,52 +44,55 @@ var combat = {
 					player2.life = player2.life - 0.5*player1.weapon.damage;
 				}
 				
-				// Les PV du joueurs 2 ne peuvent pas déscendre en dessous de 0
-				if(player2.life<0){player2.life=0};
-
-				// On modifie les PV dans le boardInfo
-				$("#player2Life").text('PV: '+player2.life);
+				if(player2.life<0){player2.life=0}; // Les PV du joueur 2 ne peuvent pas déscendre en dessous de 0
+				$("#player2Life").text('PV: '+player2.life); // On modifie les PV dans le boardInfo
 			}
 
 			// Si c'est le joueur 2 qui joue
 			if(player.nick === 'Player2'){
+				// Si le joueur 1 est en position d'attaque il perd autant de PV que les dégats de l'arme du joueur 2
 				if(player1.shield === false){
 					player1.life = player1.life - player2.weapon.damage;
 				}
+				// Si le joueur 1 est en position défensive il perd seulement la moitié des PV des dégats de l'arme du joueur 2
 				if(player1.shield === true){
 					player1.life = player1.life - 0.5*player2.weapon.damage;
 				}
-			
-				if(player1.life<0){player1.life=0};
-				$("#player1Life").text('PV: '+player1.life);
+				
+				if(player1.life<0){player1.life=0}; // Les PV du joueur 1 ne peuvent pas déscendre en dessous de 0
+				$("#player1Life").text('PV: '+player1.life); // On modifie les PV dans le boardInfo
 			}
 		});
 
+		// Ce qui se passe si le joueur décie de se défendre en cliquant sur le bouton correspondant
 		$('#buttonDefense').on('click', function(){
-			if(player.nick === 'Player1'){
-				player1.shield = true;
+			if(player.nick === 'Player1'){ 	// Si le c'est le joueur1 qui joue
+				player1.shield = true; 		// Sa position est mise à défensive
 			} 
-			if(player.nick === "Player2"){
-				player2.shield = true;
+			if(player.nick === "Player2"){	// Si c'est le joueur2 qui joue
+				player2.shield = true;		// Sa position est mise à défensive
 			}
 		});
 
+		// Ce qui se passe après n'importe quel click sur un input
 		$('input').on('click', function(){
+			// On fait appel à la fonction qui enlève notre row avec l
 			combat.removeCombatBoxRow(function(){
 				combat.checkAlive(player);
 			});
 		});
 	},
 
+	// Fonction pour vérifier si un joueur est mort ou alors définir le tour suivant
 	checkAlive: function(player){
+		// Si le joueur 1 est mort on affiche le message de victoire du joueur 2
 		if (player1.life === 0){
-			//player2 has won
 			$('<p/>').addClass('col-sm-12').text(player2VictoryMessage).appendTo('#combatBox');
+		// Si le joueur 2 est mort on affiche le message de victoire du joueur 1
 		} else if (player2.life === 0){
-			//player1 has won
 			$('<p/>').addClass('col-sm-12').text(player1VictoryMessage).appendTo('#combatBox');
+		// Sinon continue le combat en relançant un nouveau tour de combat du joueur opposé
 		} else {
-			// On continue le combat en relançant un nouveau tour de combat du joueur opposé
 			if (player.nick === "Player1"){
 				combat.tourDeCombat(player2);	
 			}

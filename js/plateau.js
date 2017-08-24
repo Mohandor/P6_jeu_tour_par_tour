@@ -2,24 +2,23 @@
 
 var plateau = {
 
-	// Fonction init qui avec le nombres de lignes et de colones donnés lance la création du plateau de jeu en appellant les autres fonctions de l'objet
+	// Fonction init qui avec le nombres de lignes et de colonnes données lance la création du plateau de jeu en appellant les autres fonctions de l'objet
 	init: function(nbLignes, nbColonnes){
 		this.nbLignes = nbLignes;
 		this.nbColonnes = nbColonnes;
 		this.nbCases = nbLignes*nbColonnes;
 		this.nbBlocked = Math.floor((this.nbCases/100)*(Math.floor(Math.random()*10)+5));
-		this.generationPlateauVide();
-		this.generationBlocked();
-		this.generationElement('weapon', nbWeapons);
-		this.generationElement('player', nbPlayers);
+		this.generationPlateauVide(); // Génère le plateau vide
+		this.generationBlocked(); // Génère les cases infranchissables
+		this.generationElement('weapon', nbWeapons); // Génère les armes
+		this.generationElement('player', nbPlayers); // Génère les joueurs
 		},
 
 	// Fonction qui génère la création d'un plateau vide en fonction du nombres de lignes et de colonnes données
 	generationPlateauVide: function() {
 
+		// Pour chaques lignes on créait une division avec une class row et une id row+i dans notre div#boardGame
 		for (var i = 1; i <= this.nbLignes; i++) {
-			
-			// Pour chaques lignes on créait une division avec une class row et une id row+i dans notre div#boardGame
 			$('<div/>').addClass('row').attr('id', 'row'+i).appendTo($("#boardGame"));
 
 				// Dans chaques lignes pour chaques colonnes on créait une div avec les classes si dessou et une id compris entre 1 et le nbLignes*nbColonnes qu'on appendTo la division #row+i
@@ -31,20 +30,23 @@ var plateau = {
 
 	// Fonction qui génère les cases 'blocked'
 	generationBlocked: function() {
-		for (var j = 0; j < this.nbBlocked; j++) {
+		// Une boucle for qui fait répéter de 1 jusqu'aux nombres de cases 'blocked' de notre objet
+		for (var j = 1; j <= this.nbBlocked; j++) {
 		
-		//On définit un nombre compris entre 1 et 144, si la case avec cet id a déjà la classe 'blocked' on en génère un autre
+		//On définit un nombre compris entre 1 et le nombre de cases, si la case avec cet id a déjà la classe 'blocked' on en génère un autre
 		var caseBlocked = Math.floor(Math.random()*this.nbCases)+1;
 		while (!$('#'+caseBlocked).hasClass('empty')){
 			var caseBlocked = Math.floor(Math.random()*this.nbCases)+1;
 		}
 
-		// On enlève la classe empty et rajoute la classe blocked à cet case
+		// On enlève la classe empty et rajoute la classe blocked à cette case
 		$('#'+caseBlocked).removeClass('empty').addClass('blocked');
 		}	
 	},
 
+	// Fonction de génération des élements sur la carte
 	generationElement: function(element, nombre){
+		
 		// Boucle for de 1 au nombre rentré
 		for (var k = 1; k <= nombre; k++){
 
@@ -57,15 +59,16 @@ var plateau = {
 
 			// Une fois que notre case est passé dans la boucle while on ajoute notre element, on commence par retirer la classe empty et en ajoutant le classe element
 			$('#'+caseChoisie).removeClass('empty').addClass(element);
+
 			// On créait ensuite une image avec comme source l'url de notre elementk, l'id est notre element+k, la classe element+Png qu'on fait appendTo à notre case
 			var elementk = eval(element+k);
 			$('<img src ="'+elementk.url+'">').attr('id',element+k).addClass(element+'Png').appendTo($('#'+caseChoisie));
-
-
 		}
 	},
 
+	// Fonction pour vérifier que la case vérifiée et les cases adjacentes sont bien 'empty'
 	checkCollision: function(caseCheck){
+
 		// Si la case n'est pas 'empty' on fait un return false
 		if (!$('#'+caseCheck).hasClass('empty')){
 				return false;

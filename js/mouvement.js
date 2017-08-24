@@ -1,12 +1,20 @@
 var mouvements = {	
 
+	// Fonction du tour de jeu d'un joueur ou du combat
 	tourDeJeu: function(typeDeTour) {
 
 		// Si l'argument est 'player1'
 		if (typeDeTour === 'player1'){
+
+			// La variable position est l'id de la case ou notre joueur se trouve
 			var position =  eval($('#player1').parent('.player').attr('id'));
+
+			//On fait appele à la fonction verification pour voir où le joueur peut se déplacer
 			this.verification(position);
+
+			// Ensuite cette fonction permet au joueur de se déplacer là où l'on clique et gère le ramassage d'arme
 			this.movementTourDeJeu(position, typeDeTour, function(){
+				// Le callback de la fonction définit la nouvelle position du joueur et définit le tour suivant avec checkCollisionCombat.
 				var newPosition = eval($('#player1').parent('.player').attr('id'));
 				var nextMove = mouvements.checkCollisionCombat(newPosition, typeDeTour);
 				mouvements.tourDeJeu(nextMove);
@@ -14,9 +22,16 @@ var mouvements = {
 
 		// Si l'argument est 'player2'
 		}else if (typeDeTour === 'player2'){
+
+			// La variable position est l'id de la case ou notre joueur se trouve
 			var position =  eval($('#player2').parent('.player').attr('id'));
+
+			//On fait appele à la fonction verification pour voir où le joueur peut se déplacer
 			this.verification(position);
+
+			// Ensuite cette fonction permet au joueur de se déplacer là où l'on clique et gère le ramassage d'arme
 			this.movementTourDeJeu(position, typeDeTour, function(){
+				// Le callback de la fonction définit la nouvelle position du joueur et définit le tour suivant avec checkCollisionCombat.
 				var newPosition = eval($('#player2').parent('.player').attr('id'));
 				var nextMove = mouvements.checkCollisionCombat(newPosition, typeDeTour);
 				mouvements.tourDeJeu(nextMove);
@@ -24,6 +39,7 @@ var mouvements = {
 
 		// Si l'argument est 'combat'
 		}else if (typeDeTour === 'combat'){
+			// On démare alors le combat avec la fonction startFight
 			combat.startFight(function(){
 				setTimeout(function(){combat.createCombatBox(function(){combat.tourDeCombat(player1)})}, 3000)
 			});
