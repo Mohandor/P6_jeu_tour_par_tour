@@ -1,5 +1,5 @@
 // Fonction de génération de nouelles armes
-function weapon(name, damage, url, id){
+function createWeapon(name, damage, url, id){
 	this.name = name;
 	this.damage = damage;
 	this.url = url;
@@ -7,7 +7,7 @@ function weapon(name, damage, url, id){
 }
 
 // Fonction de génération d'un nouveau joueur
-function player(nick, life, url, weapon) {
+function createPlayer(nick, life, url, weapon) {
     this.nick = nick;
     this.life = life;
     this.url = url;
