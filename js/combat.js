@@ -19,7 +19,6 @@ var combat = {
 	removeCombatBoxRow: function(callback){
 		$('#combatBoxRow').remove();
 		callback();
-		//fadeOut(500, function(){$(this).remove()});
 	},
 
 	tourDeCombat: function(player) {
@@ -66,12 +65,7 @@ var combat = {
 
 		// Ce qui se passe si le joueur décie de se défendre en cliquant sur le bouton correspondant
 		$('#buttonDefense').on('click', function(){
-			if(player.nick === 'Player1'){ 	// Si le c'est le joueur1 qui joue
-				player1.shield = true; 		// Sa position est mise à défensive
-			} 
-			if(player.nick === "Player2"){	// Si c'est le joueur2 qui joue
-				player2.shield = true;		// Sa position est mise à défensive
-			}
+			player.shield = true; // On met la position du joueur en défensive avec shield true
 		});
 
 		// Ce qui se passe après n'importe quel click sur un input
