@@ -3,25 +3,17 @@ var mouvements = {
 	// Fonction du tour de jeu d'un joueur ou du combat
 	tourDeJeu: function(typeDeTour) {
 
-		// Si l'argument est 'player1'
-		if (typeDeTour === 'player1'){
-			//On lance la fonction de mouvement d'un tour de jeu de joueur pour le player 1
-			this.tourDeJeuPlayer('player1');
-
-		// Si l'argument est 'player2'
-		}else if (typeDeTour === 'player2'){
-			// On lance la fonction de mouvement d'un tour de jeu de joueur pour le player2
-			this.tourDeJeuPlayer('player2');
-
 		// Si l'argument est 'combat'
-		}else if (typeDeTour === 'combat'){
+		 if (typeDeTour === 'combat'){
 			// On démare alors le combat avec la fonction startFight
 			combat.startFight(function(){
 				setTimeout(function(){combat.createCombatBox(function(){combat.tourDeCombat(player1)})}, 3000)
 			});
 			
-
+		// Si l'argument n'est pas 'combat'
 		}else {
+			// On lance la fonction de mouvement d'un tour de jeu de joueur pour le player2
+			this.tourDeJeuPlayer(typeDeTour);
 
 		}
 	},
