@@ -1,19 +1,19 @@
 var mouvements = {	
 
 	// Fonction du tour de jeu d'un joueur ou du combat
-	tourDeJeu: function(typeDeTour) {
+	tourDeJeu: function(typeDeTour, playerInitiative) {
 
 		// Si l'argument est 'combat'
 		 if (typeDeTour === 'combat'){
 			// On démare alors le combat avec la fonction startFight
 			combat.startFight(function(){
-				setTimeout(function(){combat.createCombatBox(function(){combat.tourDeCombat(player1)})}, 3000)
+				setTimeout(function(){combat.createCombatBox(function(){combat.tourDeCombat(playerInitiative)})}, 3000)
 			});
 			
 		// Si l'argument n'est pas 'combat'
 		}else {
 			// On lance la fonction de mouvement d'un tour de jeu de joueur pour le player2
-			this.tourDeJeuPlayer(typeDeTour);
+			this.tourDeJeuPlayer(typeDeTour, "");
 
 		}
 	},
@@ -29,8 +29,12 @@ var mouvements = {
 		this.movementTourDeJeu(position, player, function(){
 			// Le callback de la fonction définit la nouvelle position du joueur et définit le tour suivant avec checkCollisionCombat.
 			var newPosition = eval($('#'+player).parent('.player').attr('id'));
+			// On fait appel à la fonction checkCollisionCombat pour savoir ce que l'on fait par la suite
 			var nextMove = mouvements.checkCollisionCombat(newPosition, player);
-			mouvements.tourDeJeu(nextMove);
+			// On prend les deux valeurs retournés par votre chekCollisionCombat et on lance le tourDeJeu suivant en fonction
+			var nextMoveBis = nextMove[0];
+			var playerInitiative = eval(nextMove[1]);
+			mouvements.tourDeJeu(nextMoveBis, playerInitiative);
 		});
 	},
 
@@ -89,24 +93,24 @@ var mouvements = {
 
 	checkCollisionCombat: function(position, player){
 		var positionCheck = position;
-		// Si il y a un jouer à droite return 'combat'
+		// Si il y a un jouer à droite return 'combat' et player qui aura l'iniative pour le combat
 		if ( ( ((positionCheck+1)%plateau.nbColonnes!=1) && (positionCheck+1)<=plateau.nbCases ) && $('#'+(positionCheck+1)).hasClass('player') ){
-			return 'combat';
-		// Si il y a un joueur à gauche return 'combat'
+			return ['combat', player];
+		// Si il y a un joueur à gauche return 'combat' et player qui aura l'iniative pour le combat
 		} else if ( ( ((positionCheck-1)%plateau.nbColonnes!=0) && (positionCheck-1)>=1 ) && $('#'+(positionCheck-1)).hasClass('player') ){
-			return 'combat';
-		// Si il y a un joueur en haut return 'combat'
+			return ['combat', player];
+		// Si il y a un joueur en haut return 'combat' et player qui aura l'iniative pour le combat
 		} else if ((positionCheck-plateau.nbColonnes)>=1 && $('#'+(positionCheck-plateau.nbColonnes)).hasClass('player') ){
-			return 'combat';
-		// Si il y a un joueur en bas return 'combat'
+			return ['combat', player];
+		// Si il y a un joueur en bas return 'combat' et player qui aura l'iniative pour le combat
 		} else if ((positionCheck+plateau.nbColonnes)<=plateau.nbCases && $('#'+(positionCheck+plateau.nbColonnes)).hasClass('player')){
-			return 'combat';
+			return ['combat', player];
 		// Si c'est le joueur 2 qui jouait return "player1"
 		} else if (player==='player2'){
-			return 'player1';
+			return ['player1', ""];
 		// Si c'est le joueur 1 qui jouait return 'player2'
 		} else {
-			return 'player2';
+			return ['player2', ""];
 		}
 
 	},
