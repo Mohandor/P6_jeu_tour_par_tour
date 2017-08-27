@@ -5,37 +5,13 @@ var mouvements = {
 
 		// Si l'argument est 'player1'
 		if (typeDeTour === 'player1'){
-
-			// La variable position est l'id de la case ou notre joueur se trouve
-			var position =  eval($('#player1').parent('.player').attr('id'));
-
-			//On fait appele à la fonction verification pour voir où le joueur peut se déplacer
-			this.verification(position);
-
-			// Ensuite cette fonction permet au joueur de se déplacer là où l'on clique et gère le ramassage d'arme
-			this.movementTourDeJeu(position, typeDeTour, function(){
-				// Le callback de la fonction définit la nouvelle position du joueur et définit le tour suivant avec checkCollisionCombat.
-				var newPosition = eval($('#player1').parent('.player').attr('id'));
-				var nextMove = mouvements.checkCollisionCombat(newPosition, typeDeTour);
-				mouvements.tourDeJeu(nextMove);
-			});
+			//On lance la fonction de mouvement d'un tour de jeu de joueur pour le player 1
+			this.tourDeJeuPlayer('player1');
 
 		// Si l'argument est 'player2'
 		}else if (typeDeTour === 'player2'){
-
-			// La variable position est l'id de la case ou notre joueur se trouve
-			var position =  eval($('#player2').parent('.player').attr('id'));
-
-			//On fait appele à la fonction verification pour voir où le joueur peut se déplacer
-			this.verification(position);
-
-			// Ensuite cette fonction permet au joueur de se déplacer là où l'on clique et gère le ramassage d'arme
-			this.movementTourDeJeu(position, typeDeTour, function(){
-				// Le callback de la fonction définit la nouvelle position du joueur et définit le tour suivant avec checkCollisionCombat.
-				var newPosition = eval($('#player2').parent('.player').attr('id'));
-				var nextMove = mouvements.checkCollisionCombat(newPosition, typeDeTour);
-				mouvements.tourDeJeu(nextMove);
-			});
+			// On lance la fonction de mouvement d'un tour de jeu de joueur pour le player2
+			this.tourDeJeuPlayer('player2');
 
 		// Si l'argument est 'combat'
 		}else if (typeDeTour === 'combat'){
@@ -50,11 +26,27 @@ var mouvements = {
 		}
 	},
 
+	tourDeJeuPlayer(player){
+		// La variable position est l'id de la case ou notre joueur se trouve
+		var position =  eval($('#'+player).parent('.player').attr('id'));
+
+		//On fait appele à la fonction verification pour voir où le joueur peut se déplacer
+		this.verification(position);
+
+		// Ensuite cette fonction permet au joueur de se déplacer là où l'on clique et gère le ramassage d'arme
+		this.movementTourDeJeu(position, player, function(){
+			// Le callback de la fonction définit la nouvelle position du joueur et définit le tour suivant avec checkCollisionCombat.
+			var newPosition = eval($('#'+player).parent('.player').attr('id'));
+			var nextMove = mouvements.checkCollisionCombat(newPosition, player);
+			mouvements.tourDeJeu(nextMove);
+		});
+	},
+
 	// Fonction pour enlever et unbind les cases 'movementPossible'
 	removeMovementPossible: function() {
 		// Unbind au click les cases avec une classe 'movementPossible'
 		$('.movementPossible').unbind('click');
-		// Enlève la classe 'movementPossible' aux div qui la possèdent
+		// On enlève ensuite la classe 'movementPossible' aux div qui la possèdent
 		$('div').removeClass('movementPossible');
 	},
 
