@@ -79,12 +79,18 @@ var combat = {
 
 	// Fonction pour vérifier si un joueur est mort ou alors définir le tour suivant
 	checkAlive: function(player){
+		$('<div/>').addClass('row').attr('id', 'combatBoxRow').appendTo('#combatBox').hide().fadeIn(500);
 		// Si le joueur 1 est mort on affiche le message de victoire du joueur 2
 		if (player1.life === 0){
-			$('<p/>').addClass('col-sm-12').text(player2VictoryMessage).appendTo('#combatBox');
+			$('<p/>').addClass('col-sm-12').text(player2VictoryMessage).appendTo('#combatBoxRow');
+			$('<img>').addClass('col-sm-6').attr('src', 'pictures/players/tidusDead.png').appendTo('#combatBoxRow');
+			$('<img>').addClass('col-sm-6').attr('src', 'pictures/players/cloudVictory.png').appendTo('#combatBoxRow');
 		// Si le joueur 2 est mort on affiche le message de victoire du joueur 1
 		} else if (player2.life === 0){
-			$('<p/>').addClass('col-sm-12').text(player1VictoryMessage).appendTo('#combatBox');
+			$('<p/>').addClass('col-sm-12').text(player1VictoryMessage).appendTo('#combatBoxRow');
+			$('<img>').addClass('col-sm-6').attr('src', 'pictures/players/tidusVictory.png').appendTo('#combatBoxRow');
+			$('<img>').addClass('col-sm-6').attr('src', 'pictures/players/cloudDead.png').appendTo('#combatBoxRow');
+
 		// Sinon continue le combat en relançant un nouveau tour de combat du joueur opposé
 		} else {
 			if (player.nick === "Tidus"){

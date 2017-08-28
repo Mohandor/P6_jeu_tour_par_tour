@@ -94,7 +94,11 @@
 
 #combatBox p {
 	text-align: center;
-	padding: 10% 0 10% 0;
+	margin: 5% 0% 2% 0%;
+}
+
+#combatBox input {
+	margin-top: 15%;
 }
 
 #choixCombat {
