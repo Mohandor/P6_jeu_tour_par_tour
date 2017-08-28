@@ -123,7 +123,7 @@ var mouvements = {
 				break;
 			// Si la case de droite est sur la dernière colonne et qu'il n'est ni 'player' ni 'blocked' on ajoute un 'movementPossible' et on break
 			}else if (((position+m)%plateau.nbColonnes===0) && (!$('#'+(position+m)).hasClass('player') 
-				|| !$('#'+(position+m)).hasClass('blocked'))) {
+				&& !$('#'+(position+m)).hasClass('blocked'))) {
 				$('#'+(position+m)).addClass('movementPossible');
 				break;
 			// Si la case de droite a une classe 'weapon' et pas de classe 'player' on ajoute 'movementPossible' et on break 
@@ -147,7 +147,7 @@ var mouvements = {
 				break;
 			// Si la case de gauche est sur la dernière colonne et qu'il n'y a ni 'blocked' ni 'player' on ajoute un 'movementPossible' et on break
 			}else if (((position-m)%plateau.nbColonnes===1) && (!$('#'+(position-m)).hasClass('blocked') 
-				|| !$('#'+(position-m)).hasClass('player'))) {
+				&& !$('#'+(position-m)).hasClass('player'))) {
 				$('#'+(position-m)).addClass('movementPossible');
 				break;
 			// Si la case de gauche a une classe 'weapon' et pas de classe 'player' on ajoute un 'movementPossible' et on break

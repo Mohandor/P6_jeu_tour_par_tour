@@ -26,5 +26,5 @@ var nbWeapons = 3; //Nombre d'armes générés sur la carte
 	var buttonDefense = "TURTLE!!!" // Value du bouton pour le choix de défense
 
 	// 2.3 - Fin du combat
-	var player1VictoryMessage = "Le joueur 1 a gagné le duel! Quel homme!"; // Message de victoire du joueur 1
-	var player2VictoryMessage = "Le joueur 2 a gagné le duel! Quel ork!"; // Message de victoire du joueur 2
+	var player1VictoryMessage = "Tidus a gagné le combat et va maintenant rejoindre son équipe pour s'attaquer à Sin!"; // Message de victoire du joueur 1
+	var player2VictoryMessage = "Cloud a gagné le combat et va maintenant s'attaquer à Sephiroth!"; // Message de victoire du joueur 2

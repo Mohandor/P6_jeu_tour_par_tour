@@ -30,10 +30,10 @@ var combat = {
 		// Ce qui se passe si le joueur décide d'attaquer en cliquant sur le bouton correspondant
 		$('#buttonAttack').on('click', function(){
 			// Le shield est mis ou remis à false, il est en position d'attaque
-			player.shield = false;
+			if (player.shield === true){player.shield = false;}
 
 			// Si c'est le joueur 1 qui joue
-			if(player.nick==='Player1'){
+			if(player.nick==='Tidus'){
 				// Si le joueur 2 est en position d'attaque il perd autant de PV que les dégats de l'arme du joueur 1
 				if(player2.shield === false){
 					player2.life = player2.life - player1.weapon.damage;
@@ -48,7 +48,7 @@ var combat = {
 			}
 
 			// Si c'est le joueur 2 qui joue
-			if(player.nick === 'Player2'){
+			if(player.nick === 'Cloud'){
 				// Si le joueur 1 est en position d'attaque il perd autant de PV que les dégats de l'arme du joueur 2
 				if(player1.shield === false){
 					player1.life = player1.life - player2.weapon.damage;
@@ -87,10 +87,10 @@ var combat = {
 			$('<p/>').addClass('col-sm-12').text(player1VictoryMessage).appendTo('#combatBox');
 		// Sinon continue le combat en relançant un nouveau tour de combat du joueur opposé
 		} else {
-			if (player.nick === "Player1"){
+			if (player.nick === "Tidus"){
 				combat.tourDeCombat(player2);	
 			}
-			if (player.nick === "Player2"){
+			if (player.nick === "Cloud"){
 				combat.tourDeCombat(player1);
 			}
 		}

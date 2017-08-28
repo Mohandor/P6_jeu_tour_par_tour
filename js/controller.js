@@ -5,8 +5,8 @@ var weapon2 = new createWeapon('Épée longue',30 , 'pictures/weapons/Longsword.
 var weapon3 = new createWeapon('Devil tongue', 50, 'pictures/weapons/Devil_Tongue.png', 3);
 
 // Génération de deux joueurs qui ont 100pv et équipé d'une dague (10dmg)
-var player1 = new createPlayer('Player1', 100, 'pictures/players/player1.png', weapon0);
-var player2 = new createPlayer('Player2', 100, 'pictures/players/player2.png', weapon0);
+var player1 = new createPlayer('Tidus', 100, 'pictures/players/player1.png', weapon0);
+var player2 = new createPlayer('Cloud', 100, 'pictures/players/player2.png', weapon0);
 
 // Génération d'un plateau de 12 lignes et 12 colonnes 
 plateau.init(12,12);
