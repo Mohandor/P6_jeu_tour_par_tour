@@ -89,5 +89,6 @@ var plateau = {
 			}
 		}
 		return false;
-	},
+	}
+
 }

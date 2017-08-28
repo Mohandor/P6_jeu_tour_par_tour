@@ -22,6 +22,8 @@ var combat = {
 	},
 
 	tourDeCombat: function(player) {
+		
+
 		$('<div/>').addClass('row').attr('id', 'combatBoxRow').appendTo('#combatBox').hide().fadeIn(500);
 		$('<p/>').addClass('col-sm-12').text("C'est au tour de "+player.nick+" de jouer, que va-t-il faire?").appendTo('#combatBoxRow');
 		$('<input/>').addClass('col-sm-offset-1').addClass('col-sm-4').attr({type: 'button', id: 'buttonAttack', value: buttonAttack}).appendTo('#combatBoxRow');
@@ -82,14 +84,20 @@ var combat = {
 		$('<div/>').addClass('row').attr('id', 'combatBoxRow').appendTo('#combatBox').hide().fadeIn(500);
 		// Si le joueur 1 est mort on affiche le message de victoire du joueur 2
 		if (player1.life === 0){
+			music.endFight();
 			$('<p/>').addClass('col-sm-12').text(player2VictoryMessage).appendTo('#combatBoxRow');
-			$('<img>').addClass('col-sm-6').attr('src', 'pictures/players/tidusDead.png').appendTo('#combatBoxRow');
-			$('<img>').addClass('col-sm-6').attr('src', 'pictures/players/cloudVictory.png').appendTo('#combatBoxRow');
+			$('<div/>').addClass('col-sm-6').attr('id', 'player1Victory').appendTo('#combatBoxRow');
+			$('<div/>').addClass('col-sm-6').attr('id', 'player2Victory').appendTo('#combatBoxRow');
+			$('<img>').attr('src', 'pictures/players/tidusDead.png').appendTo('#player1Victory');
+			$('<img>').attr('src', 'pictures/players/cloudVictory.png').appendTo('#player2Victory');
 		// Si le joueur 2 est mort on affiche le message de victoire du joueur 1
 		} else if (player2.life === 0){
+			music.endFight();
 			$('<p/>').addClass('col-sm-12').text(player1VictoryMessage).appendTo('#combatBoxRow');
-			$('<img>').addClass('col-sm-6').attr('src', 'pictures/players/tidusVictory.png').appendTo('#combatBoxRow');
-			$('<img>').addClass('col-sm-6').attr('src', 'pictures/players/cloudDead.png').appendTo('#combatBoxRow');
+			$('<div/>').addClass('col-sm-6').attr('id', 'player1Victory').appendTo('#combatBoxRow');
+			$('<div/>').addClass('col-sm-6').attr('id', 'player2Victory').appendTo('#combatBoxRow');
+			$('<img>').attr('src', 'pictures/players/tidusVictory.png').appendTo('#player1Victory');
+			$('<img>').attr('src', 'pictures/players/cloudDead.png').appendTo('#player2Victory');
 
 		// Sinon continue le combat en relançant un nouveau tour de combat du joueur opposé
 		} else {

@@ -3,8 +3,11 @@ var mouvements = {
 	// Fonction du tour de jeu d'un joueur ou du combat
 	tourDeJeu: function(typeDeTour, playerInitiative) {
 
+
 		// Si l'argument est 'combat'
 		 if (typeDeTour === 'combat'){
+
+		 	music.startFight();
 			// On démare alors le combat avec la fonction startFight
 			combat.startFight(function(){
 				setTimeout(function(){combat.createCombatBox(function(){combat.tourDeCombat(playerInitiative)})}, 3000)
@@ -13,7 +16,7 @@ var mouvements = {
 		// Si l'argument n'est pas 'combat'
 		}else {
 			// On lance la fonction de mouvement d'un tour de jeu de joueur pour le player2
-			this.tourDeJeuPlayer(typeDeTour, "");
+			this.tourDeJeuPlayer(typeDeTour);
 
 		}
 	},
@@ -27,6 +30,8 @@ var mouvements = {
 
 		// Ensuite cette fonction permet au joueur de se déplacer là où l'on clique et gère le ramassage d'arme
 		this.movementTourDeJeu(position, player, function(){
+
+			music.startGame();
 			// Le callback de la fonction définit la nouvelle position du joueur et définit le tour suivant avec checkCollisionCombat.
 			var newPosition = eval($('#'+player).parent('.player').attr('id'));
 			// On fait appel à la fonction checkCollisionCombat pour savoir ce que l'on fait par la suite
