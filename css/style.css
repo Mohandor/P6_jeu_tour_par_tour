@@ -12,6 +12,13 @@
 
 /*1 - Plateau*/
 	/*1.1 -BoardGame*/
+	body { 
+    background-image: url('../pictures/boardInfo/playersBackground.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+	}
+
 	.colBoardGame {
 		border: 1px solid black;
 		height: 60px;
@@ -47,8 +54,8 @@
 
 	.weaponPng {
 		z-index: 10;
-		width: 100%;
-		height: auto;
+		max-width: 100%;
+		max-height: 100%;
 		display: block;
 		margin: auto;
 	}
@@ -66,17 +73,23 @@
 /*2 - BoardInfo*/
 
 #infoBoard {
-	padding-top: 15px;
-	border-collapse: collapse;
+	background-image: url('../pictures/boardInfo/weaponsBackground.jpg');
+	background-size: 100% auto;	
+	border: medium solid #d8b35b;
 }
 
-.playersInfo {
-	text-align: center;
+#infoGame {
+	height: 120px;
 }
 
 #weaponsInfo, .playersInfo {
 	text-align: center;
-	border: 1px solid black;
+	height: 100%;
+}
+
+#weaponsInfo{
+	border-style: none solid none;
+	border-color: #d8b35b;
 }
 
 /*3 - Combat*/
@@ -119,3 +132,6 @@
 
 /*4 - Music*/
 
+#musicBoard{
+	padding: 5px 0 5px 0;
+}
