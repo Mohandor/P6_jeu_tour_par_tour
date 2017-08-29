@@ -1,12 +1,12 @@
 /*
 Index
 
-1 - Plateau
+1 - Plateau 						l12
 
-2 - Combat
-	2.1 - Début du combat
-	2.2 - Déroulement du combat
-	2.3 - Déroulement du combat
+2 - Combat 							l17
+	2.1 - Début du combat 			l18
+	2.2 - Déroulement du combat 	l24
+	2.3 - Déroulement du combat 	l28
 */
 
 // 1 - Plateau
@@ -28,3 +28,5 @@ var nbWeapons = 3; //Nombre d'armes générés sur la carte
 	// 2.3 - Fin du combat
 	var player1VictoryMessage = "Tidus a gagné le combat et va maintenant rejoindre son équipe pour s'attaquer à Sin!"; // Message de victoire du joueur 1
 	var player2VictoryMessage = "Cloud a gagné le combat et va maintenant s'attaquer à Sephiroth!"; // Message de victoire du joueur 2
+	var newGamePlus = "Voulez-vous relancer une nouvelle partie?"; // Message qui s'affiche à la fin de la partie pour proposer à l'utilisateur de relancer une partie
+	var buttonRestart = "Restart?"; // Valeu du bouton pour relancer la partie
