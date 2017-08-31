@@ -12,4 +12,4 @@ var player2 = new createPlayer('Cloud', 100, 'pictures/players/player2.png', wea
 plateau.init(12,12);
 
 // Lancement de la partie avec le tourDeJeu du player1
-mouvements.tourDeJeu('player1');
+mouvements.tourDeJeu(firstPlayer());
