@@ -1,6 +1,5 @@
 //Création de notre lecteur de musique
-$('<audio/>').addClass('col-xs-12')./*addClass('mejs__player').*/attr({preload: 'auto', controls: "", id: "audioPlayer", src: 'music/zanarkand.mp3', loop: ""}).appendTo($('#musicBoard'));
-//$('<source>').attr('src', 'music/Zanarkand.mp3').appendTo('#audioPlayer');
+$('<audio/>').addClass('col-xs-12').attr({preload: 'auto', controls: "", id: "audioPlayer", src: 'music/zanarkand.mp3', loop: ""}).appendTo($('#musicBoard'));
 
 var audioPlayer = $('#audioPlayer')[0]; // On définit notre var audioPlayer comme le premier lecteur de l'element #audioPlayer
 audioPlayer.volume = 0.4; // On change le volume à 40% pour pas casser les oreilles de nos utilisateurs
@@ -11,7 +10,7 @@ $(document).keydown(function(e) {
 	// Si on appui sur la touche espace (32 en ASCII)
 	if (e.keyCode == '32') {
 
-    	if (audioPlayer.paused){	// SI le player est en pause
+    	if (audioPlayer.paused){	// Si le player est en pause
           	audioPlayer.play();		// On fait play
         } else {
         	audioPlayer.pause();	// Sinon on fait pause
@@ -38,12 +37,3 @@ var music = {
 		audioPlayer.play();
 	}
 }
-
-
-
-
-
-/*
-<audio id="audioPlayer" class="mejs__player" style="width: 100%" preload="auto" controls>
-		    <source src="music/Zanarkand.mp3" />
-		</audio>*/

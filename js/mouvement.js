@@ -1,13 +1,13 @@
 var mouvements = {	
 
-	// Fonction du tour de jeu d'un joueur ou du combat
+	// Fonction qui définit notre tour de jeu
 	tourDeJeu: function(typeDeTour, playerInitiative) {
 
 
 		// Si l'argument est 'combat'
 		 if (typeDeTour === 'combat'){
 
-		 	music.startFight();
+		 	music.startFight(); // On lance la musique de début de combat
 			// On démare alors le combat avec la fonction startFight
 			combat.startFight(function(){
 				setTimeout(function(){combat.createCombatBox(function(){combat.tourDeCombat(playerInitiative)})}, 3000)
@@ -15,12 +15,13 @@ var mouvements = {
 			
 		// Si l'argument n'est pas 'combat'
 		}else {
-			// On lance la fonction de mouvement d'un tour de jeu de joueur pour le player2
+			// On lance la fonction de mouvement d'un tour de jeu pour un joueur
 			this.tourDeJeuPlayer(typeDeTour);
 
 		}
 	},
 
+	// Fonction d'un tour de jeu pour un joueur
 	tourDeJeuPlayer(player){
 		// La variable position est l'id de la case ou notre joueur se trouve
 		var position =  eval($('#'+player).parent('.player').attr('id'));
@@ -76,15 +77,10 @@ var mouvements = {
 			} 
 
 			// Ensuite on gère les classes de la case que le joueur quitte
-			// Si elle a une classe 'weapon' on enlève juste la classe 'player'
-			if ($('#'+position).hasClass('weapon')){
-				$('#'+position).removeClass('player');
-			// Sinon on enlève la classe 'player' et on ajoute la classe 'empty'
-			} else {
-				$('#'+position).removeClass('player').addClass('empty');
-			}
+			$('#'+position).removeClass('player'); // On retire la classe 'player'
+			if (!$('#'+position).hasClass('weapon')){$('#'+position).addClass('empty');} // On ajoute la classe empty si il n'y a pas de weapon
 
-			// On déplace le joueur en faisant un transfert de l'img playerPng vvers la nouvelle case
+			// On déplace le joueur en faisant un transfert de l'img playerPng vers la nouvelle case
 			$(this).addClass('player').removeClass('empty').append($('#'+position).children('.playerPng'));
 			// On fait appelle à la fonction removeMovementPossible pour enlève les classes movementPossible et faire unbid sur les click
 			mouvements.removeMovementPossible();

@@ -53,7 +53,7 @@ var plateau = {
 			// On fait une boucle qu'on lance en définissant notre var passage à false et tant que les 4 cases adjacentes ne sont pas 'empty' on continue à en prendre au hasard
 			var passage = false;
 			while (passage === false){
-				caseChoisie = Math.floor(Math.random()*this.nbCases)+1;
+				var caseChoisie = Math.floor(Math.random()*this.nbCases)+1;
 				passage = plateau.checkCollision(caseChoisie);
 			}
 

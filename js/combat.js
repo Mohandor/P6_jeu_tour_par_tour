@@ -17,7 +17,7 @@ var combat = {
 		callback();
 	},
 
-	removeCombatBoxRow: function(callback){
+	emptyCombatBoxRow: function(callback){
 		$('#combatBoxRow').empty();
 		callback();
 	},
@@ -73,20 +73,21 @@ var combat = {
 		// Ce qui se passe après n'importe quel click sur un input
 		$('input').on('click', function(){
 			// On fait appel à la fonction qui enlève notre row avec l
-			combat.removeCombatBoxRow(function(){
+			combat.emptyCombatBoxRow(function(){
 				combat.checkAlive(player);
 			});
 		});
 	},
 
+	// Fonction pour proposer une nouvelle partie à l'utilsateur
 	newGamePlus: function(){
 		setTimeout(function(){
-			combat.removeCombatBoxRow(function(){
+			combat.emptyCombatBoxRow(function(){
 			$('<p/>').addClass('col-sm-12').text(newGamePlus).appendTo('#combatBoxRow');
 			$('<input/>').addClass('col-sm-offset-3').addClass('col-sm-6').attr({type: 'button', id: 'buttonRestart', value: buttonRestart}).appendTo('#combatBoxRow');
 			$('#buttonRestart').on('click', function(){location.reload()});	
 			});
-		}, 4000);
+		}, timerRestart);
 	},
 
 	// Fonction pour vérifier si un joueur est mort ou alors définir le tour suivant
@@ -94,22 +95,23 @@ var combat = {
 		$('#combatBoxRow').hide().fadeIn(500);
 		// Si le joueur 1 est mort on affiche le message de victoire du joueur 2
 		if (player1.life === 0){
-			music.endFight();
+			music.endFight(); // On lance la musique de fin de combat
 			$('<p/>').addClass('col-sm-12').text(player2VictoryMessage).appendTo('#combatBoxRow');
 			$('<div/>').addClass('col-sm-6').attr('id', 'player1Victory').appendTo('#combatBoxRow');
 			$('<div/>').addClass('col-sm-6').attr('id', 'player2Victory').appendTo('#combatBoxRow');
 			$('<img>').attr('src', 'pictures/players/tidusDead.png').appendTo('#player1Victory');
 			$('<img>').attr('src', 'pictures/players/cloudVictory.png').appendTo('#player2Victory');
-			combat.newGamePlus();
+			combat.newGamePlus();// On propose à l'utilsateur de rejouer
+
 		// Si le joueur 2 est mort on affiche le message de victoire du joueur 1
 		} else if (player2.life === 0){
-			music.endFight();
+			music.endFight(); // On lance la musique de fin de combat
 			$('<p/>').addClass('col-sm-12').text(player1VictoryMessage).appendTo('#combatBoxRow');
 			$('<div/>').addClass('col-sm-6').attr('id', 'player1Victory').appendTo('#combatBoxRow');
 			$('<div/>').addClass('col-sm-6').attr('id', 'player2Victory').appendTo('#combatBoxRow');
 			$('<img>').attr('src', 'pictures/players/tidusVictory.png').appendTo('#player1Victory');
 			$('<img>').attr('src', 'pictures/players/cloudDead.png').appendTo('#player2Victory');
-			combat.newGamePlus();
+			combat.newGamePlus(); // On propose à l'utilsateur de rejouer
 
 		// Sinon continue le combat en relançant un nouveau tour de combat du joueur opposé
 		} else {

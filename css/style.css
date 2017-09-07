@@ -13,7 +13,7 @@
 /*1 - Plateau*/
 	/*1.1 -BoardGame*/
 	body { 
-    background-image: url('../pictures/boardInfo/playersBackground.jpg');
+    background-image: url('../pictures/backgrounds/playersBackground.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: top; 
@@ -31,7 +31,7 @@
 	}
 
 	.empty {
-		background-image: url(../pictures/hw2_grass.png);
+		background-image: url(../pictures/backgrounds/hw2_grass.png);
 		z-index: 1;
 	}
 
@@ -41,13 +41,13 @@
 	}
 
 	.blocked {
-		background-image: url(../pictures/mountains.png);
+		background-image: url(../pictures/backgrounds/mountains.png);
 		background-size: 100% auto;
 		z-index: 1;
 	}
 
 	.weapon, .player {
-		background-image: url(../pictures/hw2_grass.png);
+		background-image: url(../pictures/backgrounds/hw2_grass.png);
 	}
 
 	/*1.2 - BoardElement*/
@@ -73,7 +73,7 @@
 /*2 - BoardInfo*/
 
 #infoBoard {
-	background-image: url('../pictures/boardInfo/weaponsBackground.jpg');
+	background-image: url('../pictures/backgrounds/weaponsBackground.jpg');
 	background-size: 100% auto;	
 	border: medium solid #d8b35b;
 }
@@ -133,5 +133,5 @@
 /*4 - Music*/
 
 #musicBoard{
-	padding: 5px 0 5px 0;
+	padding: 5px 0;
 }
